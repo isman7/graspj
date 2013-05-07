@@ -1,0 +1,33 @@
+<assembly>
+	<id>bin</id>
+	<formats>
+		<!-- <format>zip</format> -->
+		<format>jar</format>
+	</formats>
+	<dependencySets>
+		<dependencySet>
+			<unpack>false</unpack>
+			<scope>runtime</scope>
+			<outputDirectory>jars</outputDirectory>
+			<excludes>
+				<exclude>graspj*.jar</exclude>
+			</excludes>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<directory>target</directory>
+			<outputDirectory>plugins</outputDirectory>
+			<includes>
+				<include>graspj_.jar</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory>jars</outputDirectory>
+			<includes>
+				<include>logback.xml</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>
