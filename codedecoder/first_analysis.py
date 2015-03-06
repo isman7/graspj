@@ -19,10 +19,17 @@ for paths, dirs, files in lstDir:
         
         (nombreFichero, extension) = os.path.splitext(singleFile)
         
-        key = (paths + '/' + singleFile).split(pathDir)[1]
+        pathFile = paths + '/' + singleFile
+        key = (pathFile).split(pathDir)[1]
         lstFile = []
         lstFile.append(nombreFichero)
         lstFile.append(extension)
+        
+        if (extension == ".java" or extension == ".class"):
+            
+            objFile = open(paths + '/' + singleFile)            
+            
+            lstFile.append(objFile.read())
         
         
         dicFiles[key] = lstFile
