@@ -5,7 +5,7 @@ import os
 
 import StringIO
 
-pathDir = "/media/DATA/ICFO/git/graspj/graspj"
+pathDir = "/media/DATA/ICFO/git/graspj/graspj/src/"
 
 dicFiles = {}
 
@@ -38,42 +38,47 @@ for paths, dirs, files in lstDir:
  
 
 imports_graph = {}
-       
+prueba = {}
         
 for pathFile, lstFile in dicFiles.iteritems():
     
     #print lstFile    
     extension = lstFile[1]
     #print lstFile[0]+lstFile[1]
-    if (extension == ".java" or extension == ".class"): 
+    if (extension == ".java"): 
         
         lstLines = lstFile[2].getvalue().split("\n")
 
         lstImports = []
+        
 
         for readedLine in lstLines:
 
-               
+                
             #print readedLine        
         
             if "package " in readedLine:
             
             
-                key = readedLine.split("package ")[1].split(';')[0]
+                key = readedLine.split("package ")[1].split(';')[0] + '.' + lstFile[0]
             
             elif "import " in readedLine:
-            
+                prueba[lstFile[0]] = readedLine
                 lstImports.append(readedLine.split("import ")[1].split(';')[0])
             
-            if key in imports_graph: 
-            
-                lstImportsNew = imports_graph[key] + lstImports
-                imports_graph[key] = lstImportsNew
-            
-            else: 
-            
-                imports_graph[key] = lstImports            
         
+            
+        imports_graph[key] = lstImports
+        
+        if lstFile[0] == 'LaunchPlugin':
+            print key, lstImports, pathFile
+            print imports_graph[key]
+            
+            
+            
+            
+            
+            
         
         
         
