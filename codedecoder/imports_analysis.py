@@ -42,29 +42,37 @@ imports_graph = {}
         
 for pathFile, lstFile in dicFiles.iteritems():
     
-    print lstFile[0]+lstFile[1]
+    #print lstFile    
+    extension = lstFile[1]
+    #print lstFile[0]+lstFile[1]
     if (extension == ".java" or extension == ".class"): 
         
-        readedLine = lstFile[2].readline()
+        lstLines = lstFile[2].getvalue().split("\n")
 
         lstImports = []
+
+        for readedLine in lstLines:
+
+               
+            #print readedLine        
         
-        if "package" in readedLine:
+            if "package " in readedLine:
             
-            key = readedLine.split("package ")[1].split(';')[0]
             
-        elif "import" in readedLine:
+                key = readedLine.split("package ")[1].split(';')[0]
             
-            lstImports.append(readedLine.split("import ")[1].split(';')[0])
+            elif "import " in readedLine:
             
-        if key in imports_graph: 
+                lstImports.append(readedLine.split("import ")[1].split(';')[0])
             
-            lstImportsNew = imports_graph[key] + lstImports
-            imports_graph[key] = lstImportsNew
+            if key in imports_graph: 
             
-        else: 
+                lstImportsNew = imports_graph[key] + lstImports
+                imports_graph[key] = lstImportsNew
             
-            imports_graph[key] = lstImports            
+            else: 
+            
+                imports_graph[key] = lstImports            
         
         
         
