@@ -5,7 +5,15 @@ import os
 
 import StringIO
 
-pathDir = "/media/DATA/ICFO/git/graspj/graspj/src/"
+
+
+from pylab import *
+
+from networkx import *
+
+import random
+
+pathDir = "/media/DATA/ICFO/git/graspj/"
 
 dicFiles = {}
 
@@ -37,7 +45,7 @@ for paths, dirs, files in lstDir:
         dicFiles[key] = lstFile
  
 
-imports_graph = {}
+importsGraph = {}
 prueba = {}
         
 for pathFile, lstFile in dicFiles.iteritems():
@@ -68,16 +76,70 @@ for pathFile, lstFile in dicFiles.iteritems():
             
         
             
-        imports_graph[key] = lstImports
+        importsGraph[key] = lstImports
+                    
+
+positions = {}
+
+#Trying an 16*16 array elem
+ii = 0
+jj = 0
+      
+   
+figure(100)
         
-        if lstFile[0] == 'LaunchPlugin':
-            print key, lstImports, pathFile
-            print imports_graph[key]
-            
-            
-            
-            
-            
+codeGraph = Graph(importsGraph)            
+
+
+
+node_colors = []
+
+
+for node in codeGraph.nodes():
+    
+    lstLocations = node.split('.')
+    
+    if "ij" in lstLocations:
+        
+        node_colors.append('b')
+        
+        theta = rand()
+        positions[node] = (1*24*cos(theta), 1*24*sin(theta))        
+        
+        
+    elif "brede" in lstLocations: 
+        
+        node_colors.append('g')
+        
+        positions[node] = (ii-8, jj-8)
+        
+        ii += 1    
+    
+        if ii == 16: 
+            ii = 0
+            jj += 1
+        
+    elif "java" in lstLocations:
+        
+        node_colors.append('r')
+        theta = rand()
+        positions[node] = (-1*24*cos(theta), 1*24*sin(theta))        
+        
+        
+    else: 
+        
+        node_colors.append('k')
+        theta = rand()
+                
+        pos = (1*24*cos(theta), 1*24*sin(theta))
+        pos_rot = ( pos[1], -pos[0] )
+        positions[node] = pos_rot
+        
+
+
+
+
+draw(codeGraph, positions, node_color=node_colors, with_labels=False)           
             
         
         
