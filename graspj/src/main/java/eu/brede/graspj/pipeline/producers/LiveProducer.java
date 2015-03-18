@@ -173,7 +173,12 @@ public class LiveProducer extends AbstractProducer<AnalysisItem> implements
         Option frameLimit = detectEnd.get("frameLimit", new Option());
 
         boolean hasFrameLimit = frameLimit.isSelected();
+        
+        // TODO fix reading XML saved files. 
+        
         int numFrameLimit = frameLimit.gett("numFrames");
+        
+        
 
         long byteLimit = frameByteSize * numFrameLimit;
 
