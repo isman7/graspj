@@ -301,6 +301,11 @@ public class AnalysisItem implements Serializable, Configurable {
 	}
 
 	public Point3f calcAverageLocalizationPrecision() {
+		try {
+		    Thread.sleep(1000);                 //1000 milliseconds is one second.
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 		int spotNr = 0;
 		int positives = 0;
 		Double x = 0d;
