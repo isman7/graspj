@@ -215,13 +215,13 @@ public class WorkflowView extends View
 					}
 			
 		});
-		easySaver.put(new EasyFileFilter("gjwx","GraspJ Workflow XML"),
+		/*easySaver.put(new EasyFileFilter("gjwx","GraspJ Workflow XML"),
 				new XMLSaver<Workflow>() {
 					@Override
 					public Workflow getObject() {
 						return getWorkflowEditor().getPipeline();
 					}
-		});
+		});*/
 		Saver<Workflow> saver = new XMLSaver<Workflow>() {
 			@Override
 			public Workflow getObject() {
@@ -235,8 +235,8 @@ public class WorkflowView extends View
 	private void initLoadOptions() {
 		easyLoader.put(new EasyFileFilter("gjw","GraspJ Workflow"),
 				new BinaryLoader<Workflow>());
-		easyLoader.put(new EasyFileFilter("gjwx","GraspJ Workflow XML"),
-				new XMLLoader<Workflow>());
+		/*easyLoader.put(new EasyFileFilter("gjwx","GraspJ Workflow XML"),
+				new XMLLoader<Workflow>());*/
 		easyLoader.put(new EasyFileFilter("gjwxz","GraspJ Workflow XML (zipped)"),
 				new XMLLoader<Workflow>(GZip.wrapLoader(new StringLoader())));
 	}
