@@ -80,8 +80,8 @@ public class LiveProducer extends AbstractProducer<AnalysisItem> implements
 				requiredConfig.setPrefix("LiveProducerConfig.");
 
 				requiredConfig.initMetaData();
-				requiredConfig
-						.put("acquisitionConfig", new AcquisitionConfig());
+				requiredConfig.put("acquisitionConfig", new AcquisitionConfig());
+				// TODO be able to change this default value inside Workflow Wizard.
 				requiredConfig.put("framesPerPackage", 1024);
 				requiredConfig.put("productionEngine", getEngineChoice());
 
