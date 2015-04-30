@@ -52,6 +52,7 @@ public class Controller {
 		if(stop.compareAndSet(!newStop, newStop)) {
 			notifyList();
 		}
+		
 	}
 	
 	private synchronized void notifyList() {
