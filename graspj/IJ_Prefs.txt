@@ -1,5 +1,5 @@
 #ImageJ 1.45s Preferences
-#Tue Mar 17 10:20:29 CET 2015
+#Mon Apr 13 12:56:50 CEST 2015
 menu.size=14
 fps=7.0
 new.type=0
@@ -9,9 +9,9 @@ div-by-zero=Infinity
 pp.options=1
 prefs.options2=2
 raw.type=0
-ij.y=32
+ij.y=0
 roicolor=\#FFFF00
-ij.x=1471
+ij.x=707
 noise.sd=25.0
 prefs.options=541085696
 new.slices=1
