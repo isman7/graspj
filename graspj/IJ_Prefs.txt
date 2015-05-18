@@ -1,17 +1,18 @@
 #ImageJ 1.45s Preferences
-#Mon Apr 13 12:56:50 CEST 2015
+#Fri May 15 15:39:41 CEST 2015
 menu.size=14
 fps=7.0
 new.type=0
+dir.image=C\:\\Users\\ibenito\\git\\graspj\\graspj\\
 new.width=400
 fcolor=\#000000
 div-by-zero=Infinity
 pp.options=1
 prefs.options2=2
 raw.type=0
-ij.y=0
+ij.y=65
 roicolor=\#FFFF00
-ij.x=707
+ij.x=623
 noise.sd=25.0
 prefs.options=541085696
 new.slices=1
