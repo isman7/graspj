@@ -83,7 +83,8 @@ public class WorkflowWizardView extends View {
 				// clicked!
 				// therefore settings need to be updated manually
 				path.get(path.size() - 1).updateSettings(settings);
-
+				//ObjectChoice<ProductionEngine> eleccio = (ObjectChoice<ProductionEngine>) settings.get("srcChoice");
+				//System.out.println(eleccio.getChosen().getImageDim().framesPerPackage);
 				Workflow pipeline = createPipeline(settings);
 				getManager().switchView(
 						new WorkflowView(new WorkflowEditor(pipeline)),
@@ -131,6 +132,9 @@ public class WorkflowWizardView extends View {
 		LiveProducer liveProducer = new LiveProducer();
 		liveProducer.getConfig().put("acquisitionConfig",
 				settings.get("acqConfig"));
+		ObjectChoice<ProductionEngine> choosenfPP = (ObjectChoice<ProductionEngine>) settings.get("srcChoice");
+		//System.out.println(eleccio.getChosen().getImageDim().framesPerPackage);
+		liveProducer.getConfig().put("framesPerPackage", choosenfPP.getChosen().getImageDim().framesPerPackage);
 		liveProducer.updateImageDim();
 		producers.add(liveProducer);
 

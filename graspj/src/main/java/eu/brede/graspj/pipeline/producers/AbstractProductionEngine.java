@@ -27,6 +27,7 @@ public abstract class AbstractProductionEngine implements ProductionEngine {
 		public int frameWidth;
 		public int frameHeight;
 		public int bytesPerPixel;
+		public int framesPerPackage;
 		
 		public int frameByteSize() {
 			return frameWidth*frameHeight*bytesPerPixel; 

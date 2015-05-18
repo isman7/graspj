@@ -45,6 +45,7 @@ public class RawProductionEngine extends AbstractProductionEngine implements
 				requiredConfig.put("frameWidth", new Integer(256));
 				requiredConfig.put("frameHeight", new Integer(256));
 				requiredConfig.put("bytesPerPixel", new Integer(2));
+				requiredConfig.put("framesPerPackage", new Integer(1024));
 				return requiredConfig;
 			}
 
@@ -127,6 +128,7 @@ public class RawProductionEngine extends AbstractProductionEngine implements
 		dim.frameWidth = getConfig().gett("frameWidth");
 		dim.frameHeight = getConfig().gett("frameHeight");
 		dim.bytesPerPixel = getConfig().gett("bytesPerPixel");
+		dim.framesPerPackage = getConfig().gett("framesPerPackage");
 		return dim;
 	}
 
