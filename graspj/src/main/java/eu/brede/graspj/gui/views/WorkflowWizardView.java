@@ -132,9 +132,29 @@ public class WorkflowWizardView extends View {
 		LiveProducer liveProducer = new LiveProducer();
 		liveProducer.getConfig().put("acquisitionConfig",
 				settings.get("acqConfig"));
-		ObjectChoice<ProductionEngine> choosenfPP = (ObjectChoice<ProductionEngine>) settings.get("srcChoice");
-		//System.out.println(eleccio.getChosen().getImageDim().framesPerPackage);
-		liveProducer.getConfig().put("framesPerPackage", choosenfPP.getChosen().getImageDim().framesPerPackage);
+		
+		AcquisitionConfig acqConfig1 = (AcquisitionConfig) settings.get("acqConfig");
+		
+		liveProducer.getConfig().put("framesPerPackage", acqConfig1.get("framesPerPackage"));
+		
+		/*ObjectChoice<ProductionEngine> choosenIn = (ObjectChoice<ProductionEngine>) settings.get("srcChoice");
+		System.out.println(choosenIn.getChosen().getImageDim().framesPerPackage);
+		liveProducer.getConfig().put("framesPerPackage", choosenIn.getChosen().getImageDim().framesPerPackage);*/
+		
+		
+		/*switch (choosenIn.getChosen().toString()){
+		
+			case "Load as Raw Data":
+		
+				liveProducer.getConfig().put("framesPerPackage", choosenIn.getChosen().getImageDim().framesPerPackage);
+				
+			
+			case "Use open Stack":	
+			
+				System.out.println(settings.get("acqConfig"));
+				//liveProducer.getConfig().put("framesPerPackage", settings.get("acqConfig"))
+		}*/
+		
 		liveProducer.updateImageDim();
 		producers.add(liveProducer);
 

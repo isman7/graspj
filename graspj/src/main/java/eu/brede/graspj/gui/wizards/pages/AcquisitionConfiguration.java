@@ -92,6 +92,10 @@ public class AcquisitionConfiguration extends WizardPage {
 				Cycle cycle = AutoDetect.detectCycle(map, numColors, maxNcycle);
 				acqConfig.put("frameCycle", cycle);
 				
+				ObjectChoice<ProductionEngine> choosenIn = (ObjectChoice<ProductionEngine>) settings.get("srcChoice");
+				
+				//System.out.println('.' + choosenIn.getChoices().toString() + '.');
+						
 				int maxNthreshold = 5;
 				int threshold = AutoDetect.detectThreshold(map.keySet(), cycle,
 						maxNthreshold);
@@ -114,6 +118,8 @@ public class AcquisitionConfiguration extends WizardPage {
 			cfFitConfig.setConfig(new MLE3DConfig());
 			break;
 		}
+		
+		
 		
 		
 		

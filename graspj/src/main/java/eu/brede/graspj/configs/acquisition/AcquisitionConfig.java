@@ -25,6 +25,7 @@ public class AcquisitionConfig extends EnhancedConfig implements Serializable {
 		dim.frameHeight = 256;
 		dim.frameWidth = 256;
 		dim.bytesPerPixel = 2;
+		dim.framesPerPackage = 1024;
 //		ensureCompliance();
 //		put("metaData", new MetaData());
 //		put("frameWidth", new Integer(256));
@@ -45,6 +46,7 @@ public class AcquisitionConfig extends EnhancedConfig implements Serializable {
 		dim.frameWidth = imgPlus.getWidth();
 		dim.frameHeight = imgPlus.getHeight();
 		dim.bytesPerPixel = imgPlus.getBytesPerPixel();
+		
 	}
 	
 	public AcquisitionConfig(IFormatReader reader) {
@@ -72,6 +74,7 @@ public class AcquisitionConfig extends EnhancedConfig implements Serializable {
 		requiredConfig.put("countConversion", new Float(0.41f));
         requiredConfig.put("countOffset", new Integer(0));
 		requiredConfig.put("frameCycle", new Cycle());
+		requiredConfig.put("framesPerPackage", new Integer(1024));
 		return requiredConfig;
 	}
 	
