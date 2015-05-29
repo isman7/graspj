@@ -29,26 +29,6 @@
 					</resources>
 					<finalName>${project.artifactId}_</finalName>
 					<plugins>
-			
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-dependency-plugin</artifactId>
-							<version>2.1</version>
-							<executions>
-								<execution>
-									<id>copy</id>
-									<phase>prepare-package</phase>
-									<goals>
-										<goal>copy-dependencies</goal>
-									</goals>
-									<configuration>
-										<excludeArtifactIds>junit</excludeArtifactIds>
-										<excludeArtifactIds>imagej</excludeArtifactIds>
-										<outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-compiler-plugin</artifactId>
@@ -238,32 +218,67 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-	</profile>
-		<profile>
-			<id>32</id>
-			<dependencies>
-				<dependency>
-					<groupId>com.jogamp</groupId>
-					<artifactId>opencl-native-bundle-32</artifactId>
-					<version>0.0.1</version>
-				</dependency>
-			</dependencies>
-			<build>
-				<finalName>${project.artifactId}_32</finalName>
-			</build>
-		</profile>
-		<profile>
-			<id>64</id>
-			<dependencies>
-				<dependency>
-					<groupId>com.jogamp</groupId>
-					<artifactId>opencl-native-bundle-64</artifactId>
-					<version>0.0.1</version>
-				</dependency>
-			</dependencies>
-			<build>
-				<finalName>${project.artifactId}_64</finalName>
-			</build>
-		</profile>
+	</profile>		
+        <profile>
+            <id>plugin</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.1</version>
+                        <executions>
+                            <execution>
+                                <id>copy</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <excludeArtifactIds>junit</excludeArtifactIds>
+                                    <excludeArtifactIds>imagej</excludeArtifactIds>
+                                    <outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>standalone</id>
+            <dependencies>
+                <dependency>
+                    <groupId>gov.nih.imagej</groupId>
+                    <artifactId>imagej</artifactId>
+                    <version>1.46</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.1</version>
+                        <executions>
+                            <execution>
+                                <id>copy</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <excludeArtifactIds>junit</excludeArtifactIds>
+                                    <outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 	</profiles>
 </project>
