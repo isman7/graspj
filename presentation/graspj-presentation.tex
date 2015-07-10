@@ -1,0 +1,55 @@
+
+\documentclass[aspectratio=169]{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenx}
+\usepackage{multicol} % indice en 2 columnas
+\usepackage{subfig}
+\usepackage{tikz-timing}[2009/05/15]
+\usepackage{enumerate} % enumerados
+\usepackage{wrapfig} %preámbulo
+%\usepackage{pstricks}
+\usepackage{textpos}
+
+\usetheme{CambridgeUS}
+\usecolortheme{seahorse}
+%\useoutertheme{shadow}
+%\useinnertheme{circles}
+
+
+
+
+\title[GraspJ]{GraspJ - GPU-Run Analysis for STORM and PALM in ImageJ}
+
+\subtitle{AFIB - ICFO}
+
+\author[Ismael Benito]{\includegraphics[height=3cm,width=5.5cm]{./images/}\\ \bigskip \small Ismael Benito Altamirano}
+\date[AFIB - ICFO]{\small \today}
+
+\AtBeginSection{
+\begin{frame}
+  \frametitle{Index}
+  \tableofcontents[currentsection] 
+\end{frame}
+}
+
+\begin{document}
+
+%\begin{frame}
+%\maketitle
+%\end{frame}
+
+\addtobeamertemplate{frametitle}{}{%
+\begin{textblock*}{110mm}(.65\textwidth,-1,25cm)
+\includegraphics[height=1.5cm]{./images/logos.png}
+\end{textblock*}}
+
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{Index}
+  \tableofcontents
+\end{frame}
+
+
+
+\end{document}
