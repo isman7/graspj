@@ -1,2 +1,12 @@
 \beamer@endinputifotherversion {3.33pt}
 \select@language {spanish}
+\beamer@sectionintoc {1}{Introducing GraspJ}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Java}{5}{0}{1}
+\beamer@subsectionintoc {1}{2}{OpenCL}{6}{0}{1}
+\beamer@sectionintoc {2}{GraspJ Views}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{Workflow Wizard View}{9}{0}{2}
+\beamer@subsectionintoc {2}{2}{Workflow View}{10}{0}{2}
+\beamer@subsectionintoc {2}{3}{Running Analysis View}{11}{0}{2}
+\beamer@subsectionintoc {2}{4}{Results View}{12}{0}{2}
+\beamer@sectionintoc {3}{Errors}{13}{0}{3}
+\beamer@sectionintoc {4}{DAOSTORM}{14}{0}{4}
