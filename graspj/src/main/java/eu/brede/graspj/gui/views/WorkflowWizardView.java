@@ -39,6 +39,7 @@ import eu.brede.graspj.pipeline.processors.ProductMerger;
 import eu.brede.graspj.pipeline.processors.driftcorrector.PackageDriftCorrector;
 import eu.brede.graspj.pipeline.processors.filterer.SpotFitFilterer;
 import eu.brede.graspj.pipeline.processors.filterer.SpotFrameFilterer;
+import eu.brede.graspj.pipeline.processors.finder.SpotFinderCL;
 import eu.brede.graspj.pipeline.processors.finder.SpotFinderJava;
 import eu.brede.graspj.pipeline.processors.fitter.MLEFitter2D;
 import eu.brede.graspj.pipeline.processors.fitter.MLEFitter3D;
@@ -48,6 +49,7 @@ import eu.brede.graspj.pipeline.processors.renderer.SpotRenderer;
 import eu.brede.graspj.pipeline.processors.trailgenerator.TrailGenerator;
 import eu.brede.graspj.pipeline.producers.LiveProducer;
 import eu.brede.graspj.pipeline.producers.ProductionEngine;
+import eu.brede.graspj.pipeline.processors.daostorm.DaoStorm;;
 
 public class WorkflowWizardView extends View {
 
@@ -183,10 +185,26 @@ public class WorkflowWizardView extends View {
 		// Choice dimChoice = (Choice) settings.get("dimChoice");
 
 		// processors.add(new SpotFinder());
-		SpotFinderJava finder = new SpotFinderJava();
-		finder.setConfig((FindConfig) settings.get("findConfig"));
-		processors.add(finder);
-
+		
+		// Trying OpenCL finder!
+		// SpotFinderCL finder = new SpotFinderCL();
+		// DaoStorm finder = new DaoStorm();
+		
+		EnhancedConfig optionalFeatures = (EnhancedConfig) settings
+				.get("optionalFeatures");
+		Option daoStorm = optionalFeatures.gett("daoStorm");
+		
+		if (daoStorm.isSelected()) {
+			DaoStorm finder = new DaoStorm();
+			System.out.println("DAOSTORM Choosen");
+			finder.setConfig((FindConfig) settings.get("findConfig"));
+			processors.add(finder);
+		}else{
+			SpotFinderJava finder = new SpotFinderJava();
+			finder.setConfig((FindConfig) settings.get("findConfig"));
+			processors.add(finder);
+		}
+		
 		Class<? extends SpotRenderer> rendererClass = null;
 
 		ObjectChoice<String> dimensionality = displayConfig
@@ -213,9 +231,6 @@ public class WorkflowWizardView extends View {
 		SpotFrameFilterer spotFrameFilterer = new SpotFrameFilterer();
 		spotFrameFilterer.getConfig().put("encodeColor", true);
 		processors.add(spotFrameFilterer);
-
-		EnhancedConfig optionalFeatures = (EnhancedConfig) settings
-				.get("optionalFeatures");
 
 		Option trailGeneration = optionalFeatures.gett("trailGeneration");
 		if (trailGeneration.isSelected()) {
@@ -312,3 +327,4 @@ public class WorkflowWizardView extends View {
 	}
 
 }
+
