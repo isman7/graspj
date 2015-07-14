@@ -55,6 +55,7 @@ import eu.brede.graspj.pipeline.producers.LiveProducer;
 import eu.brede.graspj.pipeline.producers.SplitExistingProducer;
 import eu.brede.graspj.utils.ReportingExecutorServiceGJ;
 import eu.brede.graspj.utils.Utils;
+import eu.brede.graspj.pipeline.processors.daostorm.DaoStorm;
 
 public enum Global {
 	INSTANCE;
@@ -187,6 +188,7 @@ public enum Global {
 		classList.add(InjectionProducer.class);
 		classList.add(WorkflowOnCopy.class);
 		classList.add(ContinousWorkflowOnCopy.class);
+		classList.add(DaoStorm.class);
 		return classList;
 	}
 	
