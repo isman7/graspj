@@ -46,7 +46,9 @@ public class OptionalFeaturesChooser extends WizardPage {
 		
 		config.put("driftCorrection", dcOption);
 		
-		
+		// DAOSTORM added to the Workflow Wizard. 
+		Option daoOption = new Option();
+		config.put("daoStorm", daoOption);
 		
 		
 		ConfigForm configForm = new ConfigForm(config);
