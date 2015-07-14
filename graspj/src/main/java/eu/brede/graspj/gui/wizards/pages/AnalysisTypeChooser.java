@@ -69,7 +69,7 @@ public class AnalysisTypeChooser extends WizardPage {
 		config.put("renderAllChannelImage", true);
 		
 		Option renderIndividualChannels = new Option();
-		renderIndividualChannels.put("channelList", "1,2");
+		renderIndividualChannels.put("channelList", "1,9");
 		config.put("renderIndividualChannels", renderIndividualChannels);
 		
 		
