@@ -114,6 +114,9 @@ public class MLEFitter2D extends AbstractAIProcessor {
 		logger.info("Package {} completed fitting with {} spots/s", packageNr,
 				df.format(speed));
 
+		System.out.println("Package " + packageNr +  " completed fitting with " + df.format(speed) + " spots/s");
+
+		
 		queue.putReadBuffer(spots, true);
 
 		item.getSpots().getSpots().setCLBuffer(spots);

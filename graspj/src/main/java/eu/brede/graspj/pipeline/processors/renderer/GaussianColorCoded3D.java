@@ -4,12 +4,15 @@ import java.nio.ByteBuffer;
 
 import com.jogamp.opencl.CLBuffer;
 import com.jogamp.opencl.CLKernel;
+import com.jogamp.opencl.CLProgram;
 
 import eu.brede.common.config.EnhancedConfig;
 import eu.brede.graspj.configs.rendering.RenderConfig;
 import eu.brede.graspj.datatypes.ColorCodedRendering;
 import eu.brede.graspj.datatypes.Rendering;
 import eu.brede.graspj.datatypes.range.RangeComparable;
+import eu.brede.graspj.opencl.programs.CLProgramCodeGJ;
+import eu.brede.graspj.opencl.programs.CLProgramGaussianCC3DRenderer;
 
 public class GaussianColorCoded3D extends CommonGaussian {
 	
@@ -53,8 +56,9 @@ public class GaussianColorCoded3D extends CommonGaussian {
 
 	@Override
 	protected CLKernel newKernel() {
-		return cl.getProgramManager().getProgram("CLProgramGaussianCC3DRenderer")
-				.createCLKernel("render_spots");
+		CLProgram cl3D = cl.getProgramManager().getProgram("CLProgramGaussianCC3DRenderer");
+		System.out.println(cl3D.getSource());
+		return cl3D.createCLKernel("render_spots");
 	}
 
 	@Override
