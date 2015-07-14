@@ -4,7 +4,7 @@ import ij.plugin.PlugIn;
 
 import com.jdotsoft.jarloader.JarClassLoader;
 
-/*public class LaunchStandalone {
+public class LaunchStandalone {
 	
 	public static void main(String[] args) {
 		JarClassLoader jcl = new JarClassLoader();
@@ -15,10 +15,10 @@ import com.jdotsoft.jarloader.JarClassLoader;
             e.printStackTrace();
         }
 	}
-}*/
+}
 
 
-public class LaunchStandalone implements PlugIn {
+/*public class LaunchStandalone implements PlugIn {
 	
 	@Override
 	public void run(String arg) {
@@ -34,5 +34,5 @@ public class LaunchStandalone implements PlugIn {
 		
 		
 	}
-}
+}*/
  
