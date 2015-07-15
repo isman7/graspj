@@ -40,7 +40,7 @@
 
 \addtobeamertemplate{frametitle}{}{%
 \begin{textblock*}{110mm}(.65\textwidth,-1,25cm)
-\includegraphics[height=1.5cm]{./images/logos.png}
+\includegraphics[height=1.5cm]{./images/logos.pdf}
 \end{textblock*}}
 
 \frame{\titlepage}
@@ -57,6 +57,9 @@
 
 
 \end{frame}
+
+
+\subsection{Dependencies \& Modes}
 
 \begin{frame}
 \frametitle{Dependencies \& Modes}
@@ -97,21 +100,22 @@
 \end{frame}
 
 
+\subsection{Common use}
 \begin{frame}
 \frametitle{Common use}
 
 \begin{figure}[h!]
-    \centering	\includegraphics[width=0.9\textwidth]{./images/graspj.png} 
-    \caption{}
-    \label{fig:use}
+    \centering	\includegraphics[width=0.75\textwidth]{./images/common_use.pdf} 
+    %\caption{}
+    %\label{fig:use}
     \end{figure} 
  
 \end{frame}
 
-\end{frame}
 
 
-\section{GraspJ Views}
+\subsection{GraspJ Views}
+\frametitle{GraspJ Views}
 
 \begin{frame}
 
@@ -123,96 +127,34 @@
  
 \end{frame}
 
-\subsection{Workflow Wizard View}
+\section{Fixing errors and features}
 
+\subsection{Load Error}
 \begin{frame}
- 
- \begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj_workflow1.png} 
-    \caption{}
-    \label{fig:workflow}
+\frametitle{Load Error}
+\begin{figure}[h!]
+    \centering	\includegraphics[width=0.75\textwidth]{./images/load_error.pdf} 
+    %\caption{}
+    %\label{fig:load_error}
     \end{figure} 
  
 \end{frame}
 
 
+\subsection{Result Error}
 \begin{frame}
- 
- \begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj_workflow2.png} 
-    \caption{}
-    \label{fig:workflow2}
-    \end{figure} 
- 
-\end{frame}
-
-\begin{frame}
- 
- \begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj_workflow3.png} 
-    \caption{}
-    \label{fig:workflow3}
-    \end{figure} 
- 
-\end{frame}
-
-\begin{frame}
- 
- \begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj_workflow4.png} 
-    \caption{}
-    \label{fig:workflow4}
+\frametitle{Result Error}
+\begin{figure}[h!]
+    \centering	\includegraphics[width=0.75\textwidth]{./images/results_error.pdf} 
+    %\caption{}
+    %\label{fig:use}
     \end{figure} 
  
 \end{frame}
 
 
-\subsection{Workflow View}
 
-\begin{frame}
- 
- \begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj_workflow5.png} 
-    \caption{}
-    \label{fig:workflow5}
-    \end{figure} 
- 
-\end{frame}
 
-\subsection{Running Analysis View}
-
-\begin{frame}
- 
- \begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj_running1.png} 
-    \caption{}
-    \label{fig:running}
-    \end{figure} 
- 
-\end{frame}
-
-\subsection{Results View}
-\begin{frame}
- 
- \begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj_results1.png} 
-    \caption{}
-    \label{fig:results1}
-    \end{figure} 
- 
-\end{frame}
-
-\begin{frame}
- 
- \begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj_results2.png} 
-    \caption{}
-    \label{fig:results2}
-    \end{figure} 
- 
-\end{frame}
-
-\section{Errors}
 
 \section{DAOSTORM}
 
