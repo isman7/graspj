@@ -15,7 +15,7 @@
 %\useoutertheme{shadow}
 %\useinnertheme{circles}
 
-
+\setbeamersize{text margin left=25pt,text margin right=25pt} 
 
 
 \title[GraspJ]{GraspJ - GPU-Run Analysis for STORM and PALM in ImageJ}
@@ -40,7 +40,7 @@
 
 \addtobeamertemplate{frametitle}{}{%
 \begin{textblock*}{110mm}(.65\textwidth,-1,25cm)
-\includegraphics[height=1.5cm]{./images/logos.png}
+\includegraphics[height=1.5cm]{./images/logos.pdf}
 \end{textblock*}}
 
 \frame{\titlepage}
@@ -55,20 +55,58 @@
 \begin{frame}
 \frametitle{Introducing GraspJ}
 
-\textbf{GraspJ - GPU-Run Analysis for STORM and PALM in ImageJ}
-
 
 \end{frame}
-
-\subsection{Java \& OpenCL}
 
 \begin{frame}
+\frametitle{Dependencies \& Modes}
+
+\begin{columns}[c]
+
+
+\column{0.75\textwidth}
+
+\textbf{Dependencies}
+
+\begin{itemize}
+ \item \emph{Java Virtual Machine (JVM):} needs at least Version 7. 
+ \item \emph{OpenCL:} Open Computing Language, allows the possibility to compute in GPUs. Needs compiler and Drivers. 
+\end{itemize}
+
+\textbf{Modes}
+
+\begin{itemize}
+ \item \emph{Standalone Mode:} Runs indepently from ImageJ/FIJI. Less realtime features. Easier to run. 
+ \item \emph{Plugin Mode:} Runs inside ImageJ/FIJI. More realtime features. JVM versions issues.  
+\end{itemize}
+
+\column{0.15 \textwidth}
+
  
-\frametitle{Java \& OpenCL}
- 
+
+\begin{figure}[h!]
+    \centering	\includegraphics[width=0.9\textwidth]{./images/java.png} \\
+    \centering	\includegraphics[width=0.9\textwidth]{./images/OpenCL.png} \\
+    \centering	\includegraphics[width=0.9\textwidth]{./images/fiji.jpg} 
+    %\caption{}
+    %\label{fig:graspj1}
+\end{figure} 
+
+
+\end{columns}
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Common use}
+
+\begin{figure}[h!]
+    \centering	\includegraphics[width=0.75\textwidth]{./images/common_use.pdf} 
+    \caption{}
+    \label{fig:use}
+    \end{figure} 
+ 
+\end{frame}
 
 
 
@@ -174,6 +212,10 @@
 \end{frame}
 
 \section{Errors}
+
+
+
+
 
 \section{DAOSTORM}
 

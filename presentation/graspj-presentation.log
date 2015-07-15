@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.25)  14 JUL 2015 18:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.25)  15 JUL 2015 12:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1027,14 +1027,14 @@ LaTeX Font Info:    ... okay on input line 35.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.95003pt, 433.34402pt, 10.95003pt)
+* h-part:(L,W,R)=(25.0pt, 405.24408pt, 25.0pt)
 * v-part:(T,H,B)=(0.0pt, 256.0748pt, 0.0pt)
 * \paperwidth=455.24408pt
 * \paperheight=256.0748pt
-* \textwidth=433.34402pt
+* \textwidth=405.24408pt
 * \textheight=227.62207pt
-* \oddsidemargin=-61.31996pt
-* \evensidemargin=-61.31996pt
+* \oddsidemargin=-47.26999pt
+* \evensidemargin=-47.26999pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
@@ -1213,164 +1213,216 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 LaTeX Info: Redefining \. on input line 2.
 LaTeX Info: Redefining \% on input line 2.
 )
-<./images/logos.png, id=102, 678.535pt x 187.70125pt>
-File: ./images/logos.png Graphic file (type png)
- <use ./images/logos.png>
-Package pdftex.def Info: ./images/logos.png used on input line 51.
-(pdftex.def)             Requested size: 154.27895pt x 42.67912pt.
+<./images/logos.pdf, id=97, 678.46338pt x 188.16945pt>
+File: ./images/logos.pdf Graphic file (type pdf)
 
-[2
+<use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 51.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
+ [2
 
- <./images/logos.png>] (./graspj-presentation.toc
+ <./images/logos.pdf>] (./graspj-presentation.toc
 LaTeX Info: Redefining \. on input line 2.
 LaTeX Info: Redefining \% on input line 2.
 )
-File: ./images/logos.png Graphic file (type png)
- <use ./images/logos.png>
-Package pdftex.def Info: ./images/logos.png used on input line 53.
-(pdftex.def)             Requested size: 154.27895pt x 42.67912pt.
+File: ./images/logos.pdf Graphic file (type pdf)
 
-[3
+<use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 53.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
+ [3
 
 ]
-File: ./images/logos.png Graphic file (type png)
- <use ./images/logos.png>
-Package pdftex.def Info: ./images/logos.png used on input line 61.
-(pdftex.def)             Requested size: 154.27895pt x 42.67912pt.
+File: ./images/logos.pdf Graphic file (type pdf)
+ <use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 59.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
  [4
 
 ]
-File: ./images/logos.png Graphic file (type png)
- <use ./images/logos.png>
-Package pdftex.def Info: ./images/logos.png used on input line 69.
-(pdftex.def)             Requested size: 154.27895pt x 42.67912pt.
+LaTeX Font Info:    Try loading font information for U+msa on input line 97.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 97.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
+line 97.
+
+(/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
+File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
+thkerncmss.
+)
+<./images/java.png, id=220, 301.125pt x 301.125pt>
+File: ./images/java.png Graphic file (type png)
+ <use ./images/java.png>
+Package pdftex.def Info: ./images/java.png used on input line 97.
+(pdftex.def)             Requested size: 54.70534pt x 54.70558pt.
+
+<./images/OpenCL.png, id=221, 466.74374pt x 466.74374pt>
+File: ./images/OpenCL.png Graphic file (type png)
+
+<use ./images/OpenCL.png>
+Package pdftex.def Info: ./images/OpenCL.png used on input line 97.
+(pdftex.def)             Requested size: 54.70534pt x 54.7035pt.
+ <./images/fiji.jpg, id=222, 72.27pt x 72.27pt>
+File: ./images/fiji.jpg Graphic file (type jpg)
+
+<use ./images/fiji.jpg>
+Package pdftex.def Info: ./images/fiji.jpg used on input line 97.
+(pdftex.def)             Requested size: 54.70534pt x 54.7052pt.
+File: ./images/logos.pdf Graphic file (type pdf)
+ <use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 97.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
  [5
 
-]
-(./graspj-presentation.toc
+ <./images/java.png> <./images/OpenCL.png> <./images/fiji.jpg>]
+<./images/common_use.pdf, id=252, 1050.12296pt x 687.74887pt>
+File: ./images/common_use.pdf Graphic file (type pdf)
+
+<use ./images/common_use.pdf>
+Package pdftex.def Info: ./images/common_use.pdf used on input line 109.
+(pdftex.def)             Requested size: 303.93306pt x 199.05377pt.
+File: ./images/logos.pdf Graphic file (type pdf)
+ <use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 109.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
+
+Overfull \vbox (39.66606pt too high) detected at line 109
+ []
+
+[6
+
+ <./images/common_use.pdf>] (./graspj-presentation.toc
 LaTeX Info: Redefining \. on input line 2.
 LaTeX Info: Redefining \% on input line 2.
 )
-File: ./images/logos.png Graphic file (type png)
- <use ./images/logos.png>
-Package pdftex.def Info: ./images/logos.png used on input line 75.
-(pdftex.def)             Requested size: 154.27895pt x 42.67912pt.
- [6
+File: ./images/logos.pdf Graphic file (type pdf)
+
+<use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 113.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
+ [7
 
 ]
-<./images/graspj.png, id=270, 377.91188pt x 262.73157pt>
+<./images/graspj.png, id=505, 377.91188pt x 262.73157pt>
 File: ./images/graspj.png Graphic file (type png)
 
 <use ./images/graspj.png>
-Package pdftex.def Info: ./images/graspj.png used on input line 85.
-(pdftex.def)             Requested size: 173.33496pt x 120.50519pt.
- [7
+Package pdftex.def Info: ./images/graspj.png used on input line 123.
+(pdftex.def)             Requested size: 162.09515pt x 112.69173pt.
+ [8
 
  <./images/graspj.png>]
-<./images/graspj_workflow1.png, id=300, 537.50812pt x 471.26062pt>
+<./images/graspj_workflow1.png, id=535, 537.50812pt x 471.26062pt>
 File: ./images/graspj_workflow1.png Graphic file (type png)
 
 <use ./images/graspj_workflow1.png>
-Package pdftex.def Info: ./images/graspj_workflow1.png used on input line 97.
-(pdftex.def)             Requested size: 173.33496pt x 151.97139pt.
- [8
+Package pdftex.def Info: ./images/graspj_workflow1.png used on input line 135.
+(pdftex.def)             Requested size: 162.09515pt x 142.11275pt.
+ [9
 
  <./images/graspj_workflow1.png>]
-<./images/graspj_workflow2.png, id=332, 953.81343pt x 453.19313pt>
+<./images/graspj_workflow2.png, id=568, 953.81343pt x 453.19313pt>
 File: ./images/graspj_workflow2.png Graphic file (type png)
 
 <use ./images/graspj_workflow2.png>
-Package pdftex.def Info: ./images/graspj_workflow2.png used on input line 108.
-(pdftex.def)             Requested size: 173.33496pt x 82.35265pt.
- [9
+Package pdftex.def Info: ./images/graspj_workflow2.png used on input line 146.
+(pdftex.def)             Requested size: 162.09515pt x 77.01414pt.
+ [10
 
  <./images/graspj_workflow2.png>]
-<./images/graspj_workflow3.png, id=363, 386.19281pt x 304.88907pt>
+<./images/graspj_workflow3.png, id=599, 386.19281pt x 304.88907pt>
 File: ./images/graspj_workflow3.png Graphic file (type png)
 
 <use ./images/graspj_workflow3.png>
-Package pdftex.def Info: ./images/graspj_workflow3.png used on input line 118.
-(pdftex.def)             Requested size: 173.33496pt x 136.84059pt.
- [10
+Package pdftex.def Info: ./images/graspj_workflow3.png used on input line 156.
+(pdftex.def)             Requested size: 162.09515pt x 127.9688pt.
+ [11
 
  <./images/graspj_workflow3.png>]
-<./images/graspj_workflow4.png, id=394, 286.06876pt x 595.47469pt>
+<./images/graspj_workflow4.png, id=629, 286.06876pt x 595.47469pt>
 File: ./images/graspj_workflow4.png Graphic file (type png)
 
 <use ./images/graspj_workflow4.png>
-Package pdftex.def Info: ./images/graspj_workflow4.png used on input line 128.
-(pdftex.def)             Requested size: 173.33496pt x 360.813pt.
+Package pdftex.def Info: ./images/graspj_workflow4.png used on input line 166.
+(pdftex.def)             Requested size: 162.09515pt x 337.41605pt.
 
-Overfull \vbox (171.01588pt too high) detected at line 128
+Overfull \vbox (147.61893pt too high) detected at line 166
  []
 
-[11
+[12
 
  <./images/graspj_workflow4.png>]
-<./images/graspj_workflow5.png, id=424, 810.02625pt x 627.09282pt>
+<./images/graspj_workflow5.png, id=660, 810.02625pt x 627.09282pt>
 File: ./images/graspj_workflow5.png Graphic file (type png)
 
 <use ./images/graspj_workflow5.png>
-Package pdftex.def Info: ./images/graspj_workflow5.png used on input line 141.
-(pdftex.def)             Requested size: 173.33496pt x 134.1908pt.
- [12
+Package pdftex.def Info: ./images/graspj_workflow5.png used on input line 179.
+(pdftex.def)             Requested size: 162.09515pt x 125.48332pt.
+ [13
 
  <./images/graspj_workflow5.png>]
-<./images/graspj_running1.png, id=454, 315.42844pt x 410.2828pt>
+<./images/graspj_running1.png, id=691, 315.42844pt x 410.2828pt>
 File: ./images/graspj_running1.png Graphic file (type png)
 
 <use ./images/graspj_running1.png>
-Package pdftex.def Info: ./images/graspj_running1.png used on input line 153.
-(pdftex.def)             Requested size: 173.33496pt x 225.46216pt.
+Package pdftex.def Info: ./images/graspj_running1.png used on input line 191.
+(pdftex.def)             Requested size: 162.09515pt x 210.83786pt.
 
-Overfull \vbox (35.66504pt too high) detected at line 153
- []
-
-[13
-
- <./images/graspj_running1.png>]
-<./images/graspj_results1.png, id=486, 390.70969pt x 600.74437pt>
-File: ./images/graspj_results1.png Graphic file (type png)
-
-<use ./images/graspj_results1.png>
-Package pdftex.def Info: ./images/graspj_results1.png used on input line 164.
-(pdftex.def)             Requested size: 173.33496pt x 266.51pt.
-
-Overfull \vbox (76.71288pt too high) detected at line 164
+Overfull \vbox (21.04074pt too high) detected at line 191
  []
 
 [14
 
+ <./images/graspj_running1.png>]
+<./images/graspj_results1.png, id=721, 390.70969pt x 600.74437pt>
+File: ./images/graspj_results1.png Graphic file (type png)
+
+<use ./images/graspj_results1.png>
+Package pdftex.def Info: ./images/graspj_results1.png used on input line 202.
+(pdftex.def)             Requested size: 162.09515pt x 249.23093pt.
+
+Overfull \vbox (59.4338pt too high) detected at line 202
+ []
+
+[15
+
  <./images/graspj_results1.png>]
-<./images/graspj_results2.png, id=516, 421.575pt x 289.08pt>
+<./images/graspj_results2.png, id=751, 421.575pt x 289.08pt>
 File: ./images/graspj_results2.png Graphic file (type png)
 
 <use ./images/graspj_results2.png>
-Package pdftex.def Info: ./images/graspj_results2.png used on input line 174.
-(pdftex.def)             Requested size: 173.33496pt x 118.8588pt.
- [15
+Package pdftex.def Info: ./images/graspj_results2.png used on input line 212.
+(pdftex.def)             Requested size: 162.09515pt x 111.15277pt.
+ [16
 
  <./images/graspj_results2.png>]
 (./graspj-presentation.toc
 LaTeX Info: Redefining \. on input line 2.
 LaTeX Info: Redefining \% on input line 2.
 )
-File: ./images/logos.png Graphic file (type png)
- <use ./images/logos.png>
-Package pdftex.def Info: ./images/logos.png used on input line 176.
-(pdftex.def)             Requested size: 154.27895pt x 42.67912pt.
- [16
+File: ./images/logos.pdf Graphic file (type pdf)
+ <use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 214.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
+ [17
 
 ]
 (./graspj-presentation.toc
 LaTeX Info: Redefining \. on input line 2.
 LaTeX Info: Redefining \% on input line 2.
 )
-File: ./images/logos.png Graphic file (type png)
- <use ./images/logos.png>
-Package pdftex.def Info: ./images/logos.png used on input line 178.
-(pdftex.def)             Requested size: 154.27895pt x 42.67912pt.
- [17
+File: ./images/logos.pdf Graphic file (type pdf)
+ <use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 216.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
+ [18
 
 ]
 \tf@nav=\write6
@@ -1382,40 +1434,41 @@ Package pdftex.def Info: ./images/logos.png used on input line 178.
 \tf@snm=\write8
 \openout8 = `graspj-presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 184.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 184.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 222.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 222.
 
 (./graspj-presentation.aux
 LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 184.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 184.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 222.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 222.
 Package rerunfilecheck Info: File `graspj-presentation.out' has not changed.
-(rerunfilecheck)             Checksum: F263F1302477F16E4AC3D14DA17EA4F6;514.
+(rerunfilecheck)             Checksum: 7BB22C604662DFD8039346D768F52685;449.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 184.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 222.
  ) 
 Here is how much of TeX's memory you used:
- 23451 strings out of 494917
- 467818 string characters out of 6178371
- 591606 words of memory out of 5000000
- 26096 multiletter control sequences out of 15000+600000
- 6051 words of font info for 22 fonts, out of 8000000 for 9000
+ 23564 strings out of 494917
+ 470507 string characters out of 6178371
+ 591638 words of memory out of 5000000
+ 26180 multiletter control sequences out of 15000+600000
+ 11345 words of font info for 41 fonts, out of 8000000 for 9000
  62 hyphenation exceptions out of 8191
- 57i,17n,69p,426b,877s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,69p,426b,875s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-Output written on graspj-presentation.pdf (17 pages, 424076 bytes).
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb>
+Output written on graspj-presentation.pdf (18 pages, 676133 bytes).
 PDF statistics:
- 645 PDF objects out of 1000 (max. 8388607)
- 583 compressed objects within 6 object streams
- 53 named destinations out of 1000 (max. 500000)
- 207 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 883 PDF objects out of 1000 (max. 8388607)
+ 741 compressed objects within 8 object streams
+ 55 named destinations out of 1000 (max. 500000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
 
