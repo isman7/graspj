@@ -9,6 +9,7 @@
 \usepackage{wrapfig} %preámbulo
 %\usepackage{pstricks}
 \usepackage{textpos}
+\usepackage{csvsimple}
 
 \usetheme{CambridgeUS}
 \usecolortheme{seahorse}
@@ -55,7 +56,37 @@
 \begin{frame}
 \frametitle{Introducing GraspJ}
 
+\begin{columns}[c]
 
+\column{0.45 \textwidth}
+
+ 
+
+\begin{figure}[h!]
+    \centering	\includegraphics[width=\textwidth]{./images/graspj_paper.pdf} 
+    %\caption{}
+    %\label{fig:use}
+    \end{figure} 
+
+\textbf{GraspJ: an open source,real-time analysis package for super-resolution imaging}  \\  
+Norman Brede and Melike Lakadamyali    
+
+\column{0.55\textwidth}
+
+Was developed by Norman Brede at AFIB as his master thesis. It is thougth:
+
+\begin{itemize}
+ \item As a plugin of ImageJ or FIJI.
+ \item To be able to run in a GPU based system.
+ \item To be able to run in realtime with Labview.  
+ \item To be open source.
+\end{itemize}
+
+
+
+\end{columns}
+    
+    
 \end{frame}
 
 
@@ -119,13 +150,25 @@
 
 \begin{frame}
 
-\begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj.png} 
-    \caption{}
-    \label{fig:graspj}
+\column{0.45 \textwidth}
+
+     
+\textbf{DAOSTORM: an algorithm for high-density super-resolution microscopy}  \\  
+Seamus J Holden, Stephan Uphoff \& Achillefs N Kapanidis
+
+
+\column{0.55\textwidth}
+    \begin{figure}
+    \centering	\includegraphics[width=\textwidth]{./images/dao_paper.pdf} 
+    %\caption{}
+    %\label{fig:use}
     \end{figure} 
- 
+
+\end{columns}
+
+    
 \end{frame}
+    
 
 \section{Fixing errors and features}
 
@@ -154,12 +197,70 @@
 
 
 
+\subsection{Workflow ``Mistake''}
+\begin{frame}
+\frametitle{Workflow ``Mistake''}
+\begin{figure}[h!]
+    \centering	\includegraphics[width=0.75\textwidth]{./images/workflow_error.pdf} 
+    %\caption{}
+    %\label{fig:use}
+    \end{figure} 
+ 
+\end{frame}
+
+\subsection{OpenCL Exception}
+\begin{frame}
+\frametitle{OpenCL Exception}
+\begin{figure}[h!]
+    \centering	\includegraphics[width=0.75\textwidth]{./images/opencl_error.pdf} 
+    %\caption{}
+    %\label{fig:use}
+    \end{figure} 
+ 
+\end{frame}
+
+
+\subsection{Features}
+
+\begin{frame}
+\frametitle{OpenCL Exception}
+%\csvautobooktabular{result.csv}
+\end{frame}
 
 
 \section{DAOSTORM}
 
 
+\begin{frame}
+\frametitle{DAOSTORM}
 
+\begin{columns}[c]
+
+\column{0.45 \textwidth}
+
+ 
+
+\begin{figure}[h!]
+    \centering	\includegraphics[width=\textwidth]{./images/dao_paper.pdf} 
+    %\caption{}
+    %\label{fig:use}
+    \end{figure} 
+    
+\textbf{DAOSTORM: an algorithm for high-density super-resolution microscopy}  \\  
+Seamus J Holden, Stephan Uphoff \& Achillefs N Kapanidis
+
+
+\column{0.55\textwidth}
+
+Was developed forking DAOPHOT II algotrithm from star detections.  
+
+
+
+
+\end{columns}
+    
+    
+\end{frame}
 
 
 \end{document}

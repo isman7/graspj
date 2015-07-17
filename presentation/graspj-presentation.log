@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.25)  15 JUL 2015 15:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.1.25)  17 JUL 2015 14:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -704,8 +704,8 @@ Package: beamerouterthemedefault 2012/12/19  (rcs-revision 1686da3db3c9)
 ))) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2014/09/25 3.9l The Babel package
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf
-Language: spanish.ldf 2014/04/24 v5.0n Spanish support from the babel system
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2014/09/25 3.9l Babel common definitions
@@ -713,12 +713,9 @@ File: babel.def 2014/09/25 3.9l Babel common definitions
 \U@D=\dimen188
 LaTeX Info: Redefining \textlatin on input line 1431.
 )
-\es@quottoks=\toks43
-\es@quotdepth=\count154
-Package babel Info: Making " an active character on input line 516.
-Package babel Info: Making . an active character on input line 617.
-Package babel Info: Making < an active character on input line 662.
-Package babel Info: Making > an active character on input line 662.
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/inputenx.sty
 Package: inputenx 2011/05/27 v1.10 Enhanced input encoding handling (HO)
@@ -732,8 +729,8 @@ Package inputenx Info: Encoding name: utf8x
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2014/04/30 v1.2b Input encoding file
-\inpenc@prehook=\toks44
-\inpenc@posthook=\toks45
+\inpenc@prehook=\toks43
+\inpenc@posthook=\toks44
 )
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/utf8x.def
 File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
@@ -744,21 +741,21 @@ Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-global.def
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
-\uc@secondtry=\count155
-\uc@combtoks=\toks46
-\uc@combtoksb=\toks47
-\uc@temptokena=\toks48
+\uc@secondtry=\count154
+\uc@combtoks=\toks45
+\uc@combtoksb=\toks46
+\uc@temptokena=\toks47
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2014/10/28 v1.8i multicolumn formatting (FMi)
-\c@tracingmulticols=\count156
+\c@tracingmulticols=\count155
 \mult@box=\box53
 \multicol@leftmargin=\dimen189
-\c@unbalance=\count157
-\c@collectmore=\count158
-\doublecol@number=\count159
-\multicoltolerance=\count160
-\multicolpretolerance=\count161
+\c@unbalance=\count156
+\c@collectmore=\count157
+\doublecol@number=\count158
+\multicoltolerance=\count159
+\multicolpretolerance=\count160
 \full@width=\dimen190
 \page@free=\dimen191
 \premulticols=\dimen192
@@ -789,14 +786,14 @@ Package: multicol 2014/10/28 v1.8i multicolumn formatting (FMi)
 \@tempa=\box74
 \@tempa=\box75
 \@tempa=\box76
-\c@columnbadness=\count162
-\c@finalcolumnbadness=\count163
+\c@columnbadness=\count161
+\c@finalcolumnbadness=\count162
 \last@try=\dimen195
 \multicolovershoot=\dimen196
 \multicolundershoot=\dimen197
 \mult@nat@firstbox=\box77
 \colbreak@box=\box78
-\mc@col@check@num=\count164
+\mc@col@check@num=\count163
 )
 (/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
@@ -815,22 +812,22 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 \caption@parindent=\dimen203
 \caption@hangindent=\dimen204
 )
-\c@ContinuedFloat=\count165
+\c@ContinuedFloat=\count164
 Package caption Info: beamer document class.
 Package caption Info: hyperref package is loaded.
 Package caption Info: Hyperref support is turned off
 (caption)             because hyperref has stopped early.
 )
-\c@KVtest=\count166
+\c@KVtest=\count165
 \sf@farskip=\skip59
 \sf@captopadj=\dimen205
 \sf@capskip=\skip60
 \sf@nearskip=\skip61
-\c@subfigure=\count167
-\c@subfigure@save=\count168
-\c@depth=\count169
-\c@subtable=\count170
-\c@subtable@save=\count171
+\c@subfigure=\count166
+\c@subfigure@save=\count167
+\c@depth=\count168
+\c@subtable=\count169
+\c@subtable@save=\count170
 \sf@top=\skip62
 \sf@bottom=\skip63
 )
@@ -870,8 +867,8 @@ Package: pgffor 2013/12/13 v3.0.0 (rcs-revision 1.25)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
 \pgffor@iter=\dimen208
 \pgffor@skip=\dimen209
-\pgffor@stack=\toks49
-\pgffor@toks=\toks50
+\pgffor@stack=\toks48
+\pgffor@toks=\toks49
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2013/12/13 v3.0.0 (rcs-revision 1.142)
@@ -879,7 +876,7 @@ Package: tikz 2013/12/13 v3.0.0 (rcs-revision 1.142)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
 .code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
-\pgf@plot@mark@count=\count172
+\pgf@plot@mark@count=\count171
 \pgfplotmarksize=\dimen210
 )
 \tikz@lastx=\dimen211
@@ -892,18 +889,18 @@ File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
 \tikz@figbox@bg=\box81
 \tikz@tempbox=\box82
 \tikz@tempbox@bg=\box83
-\tikztreelevel=\count173
-\tikznumberofchildren=\count174
-\tikznumberofcurrentchild=\count175
-\tikz@fig@count=\count176
+\tikztreelevel=\count172
+\tikznumberofchildren=\count173
+\tikznumberofcurrentchild=\count174
+\tikz@fig@count=\count175
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count177
-\pgfmatrixcurrentcolumn=\count178
-\pgf@matrix@numberofcolumns=\count179
+\pgfmatrixcurrentrow=\count176
+\pgfmatrixcurrentcolumn=\count177
+\pgf@matrix@numberofcolumns=\count178
 )
-\tikz@expandcount=\count180
+\tikz@expandcount=\count179
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex
@@ -930,7 +927,7 @@ e.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen219
 \pgfdecoratedinputsegmentremainingdistance=\dimen220
 \pgf@decorate@distancetomove=\dimen221
-\pgf@decorate@repeatstate=\count181
+\pgf@decorate@repeatstate=\count180
 \pgfdecorationsegmentamplitude=\dimen222
 \pgfdecorationsegmentlength=\dimen223
 )
@@ -938,22 +935,22 @@ e.tex
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
 decorations.pathmorphing.code.tex))
-\tikztiming@numint=\count182
-\tikztiming@numfrac=\count183
+\tikztiming@numint=\count181
+\tikztiming@numfrac=\count182
 \tikztiming@xunit=\skip64
 \tikztiming@yunit=\skip65
-\tikztiming@debug=\count184
-\c@tikztiming@nrows=\count185
-\c@tikztimingrows=\count186
-\c@tikztimingtrans=\count187
-\c@tikztimingtranspos=\count188
+\tikztiming@debug=\count183
+\c@tikztiming@nrows=\count184
+\c@tikztimingrows=\count185
+\c@tikztimingtrans=\count186
+\c@tikztimingtranspos=\count187
 )
 (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen224
 \WF@size=\dimen225
-\c@WF@wrappedlines=\count189
+\c@WF@wrappedlines=\count188
 \WF@box=\box87
-\WF@everypar=\toks51
+\WF@everypar=\toks50
 Package: wrapfig 2003/01/31  v 3.6
 )
 (/usr/share/texlive/texmf-dist/tex/latex/textpos/textpos.sty
@@ -967,8 +964,19 @@ Package: textpos 2014/01/03 1.7j, absolute positioning of text on the page
 \TP@absmargin=\dimen229
 Grid set 16 x 16 = 28.45274pt x 16.00467pt
 \TPboxrulesize=\dimen230
-\TP@tbargs=\toks52
+\TP@tbargs=\toks51
 \TP@prevdepth=\dimen231
+) (/usr/share/texlive/texmf-dist/tex/latex/csvsimple/csvsimple.sty
+Package: csvsimple 2014/07/14 version 1.12 LaTeX CSV file processing
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\csv@file=\read2
+\c@csvinputline=\count189
+\c@csvrow=\count190
+\c@csvcol=\count191
+\csv@out=\write5
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/themes/theme/beamerthemeCambrid
 geUS.sty
@@ -992,32 +1000,29 @@ Package: beamercolorthemeseahorse 2010/06/17  (rcs-revision d02a7cf4d8ae)
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 25.
+(hyperref)                removing `\new@ifnextchar' on input line 26.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\bigskipamount' on input line 25.
+(hyperref)                removing `\bigskipamount' on input line 26.
 
-(./graspj-presentation.aux
-LaTeX Info: Redefining \. on input line 25.
-LaTeX Info: Redefining \% on input line 25.
-)
+(./graspj-presentation.aux)
 \openout1 = `graspj-presentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1055,17 +1060,17 @@ LaTeX Font Info:    ... okay on input line 35.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count190
+\scratchcounter=\count192
 \scratchdimen=\dimen232
 \scratchbox=\box89
-\nofMPsegments=\count191
-\nofMParguments=\count192
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count193
+\nofMPsegments=\count193
+\nofMParguments=\count194
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count195
 \MPscratchDim=\dimen233
-\MPnumerator=\count194
-\makeMPintoPDFobject=\count195
-\everyMPtoPDFconversion=\toks54
+\MPnumerator=\count196
+\makeMPintoPDFobject=\count197
+\everyMPtoPDFconversion=\toks53
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -1083,7 +1088,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box90
-Package hyperref Info: Link coloring OFF on input line 35.
+Package hyperref Info: Link coloring OFF on input line 36.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1091,68 +1096,68 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count196
+\c@section@level=\count198
 )
-LaTeX Info: Redefining \ref on input line 35.
-LaTeX Info: Redefining \pageref on input line 35.
-LaTeX Info: Redefining \nameref on input line 35.
+LaTeX Info: Redefining \ref on input line 36.
+LaTeX Info: Redefining \pageref on input line 36.
+LaTeX Info: Redefining \nameref on input line 36.
 
 (./graspj-presentation.out) (./graspj-presentation.out)
-\@outlinefile=\write5
-\openout5 = `graspj-presentation.out'.
+\@outlinefile=\write6
+\openout6 = `graspj-presentation.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 35.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 36.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 35.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 36.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 35.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 35.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 35.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 35.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 36.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 35.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 35.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 36.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 35.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 35.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 35.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 36.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 35.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 35.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 36.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 35.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 36.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 35.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 35.
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 35.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 35.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 35.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 35.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 35.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 36.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 36.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
 (Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 3
-5.
+6.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 
-35.
+36.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 35.
+ut line 36.
 
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts/translator-bas
 ic-dictionary/translator-basic-dictionary-English.dict
@@ -1178,9 +1183,7 @@ Dictionary: translator-numbers-dictionary, Language: English
 orem-dictionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 35.
-LaTeX Info: Redefining \. on input line 35.
-LaTeX Info: Redefining \% on input line 35.
+LaTeX Info: Redefining \includegraphics on input line 36.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
@@ -1204,248 +1207,275 @@ Package caption Info: End \AtBeginDocument code.
 (./graspj-presentation.nav)
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 46.
+(Font)              size <5> substituted on input line 47.
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(./graspj-presentation.toc
-LaTeX Info: Redefining \. on input line 2.
-LaTeX Info: Redefining \% on input line 2.
-)
-<./images/logos.pdf, id=97, 678.46338pt x 188.16945pt>
+(./graspj-presentation.toc)
+<./images/logos.pdf, id=107, 678.46338pt x 188.16945pt>
 File: ./images/logos.pdf Graphic file (type pdf)
 
 <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 51.
+Package pdftex.def Info: ./images/logos.pdf used on input line 52.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
  [2
 
- <./images/logos.pdf>] (./graspj-presentation.toc
-LaTeX Info: Redefining \. on input line 2.
-LaTeX Info: Redefining \% on input line 2.
-)
+ <./images/logos.pdf>] (./graspj-presentation.toc)
 File: ./images/logos.pdf Graphic file (type pdf)
 
 <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 53.
+Package pdftex.def Info: ./images/logos.pdf used on input line 54.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
  [3
 
 ]
-File: ./images/logos.pdf Graphic file (type pdf)
- <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 59.
-(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
- [4
+<./images/graspj_paper.pdf, id=207, 616.75438pt x 306.75792pt>
+File: ./images/graspj_paper.pdf Graphic file (type pdf)
 
-]
-LaTeX Font Info:    Try loading font information for U+msa on input line 100.
+<use ./images/graspj_paper.pdf>
+Package pdftex.def Info: ./images/graspj_paper.pdf used on input line 90.
+(pdftex.def)             Requested size: 182.3586pt x 90.69875pt.
+LaTeX Font Info:    Try loading font information for U+msa on input line 90.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 100.
+LaTeX Font Info:    Try loading font information for U+msb on input line 90.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 100.
+line 90.
 
 (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 )
-<./images/java.png, id=218, 301.125pt x 301.125pt>
+File: ./images/logos.pdf Graphic file (type pdf)
+
+<use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 90.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
+ [4
+
+ <./images/graspj_paper.pdf>]
+<./images/java.png, id=241, 301.125pt x 301.125pt>
 File: ./images/java.png Graphic file (type png)
  <use ./images/java.png>
-Package pdftex.def Info: ./images/java.png used on input line 100.
+Package pdftex.def Info: ./images/java.png used on input line 131.
 (pdftex.def)             Requested size: 54.70534pt x 54.70558pt.
 
-<./images/OpenCL.png, id=219, 466.74374pt x 466.74374pt>
+<./images/OpenCL.png, id=242, 466.74374pt x 466.74374pt>
 File: ./images/OpenCL.png Graphic file (type png)
 
 <use ./images/OpenCL.png>
-Package pdftex.def Info: ./images/OpenCL.png used on input line 100.
+Package pdftex.def Info: ./images/OpenCL.png used on input line 131.
 (pdftex.def)             Requested size: 54.70534pt x 54.7035pt.
- <./images/fiji.jpg, id=220, 72.27pt x 72.27pt>
+ <./images/fiji.jpg, id=243, 72.27pt x 72.27pt>
 File: ./images/fiji.jpg Graphic file (type jpg)
 
 <use ./images/fiji.jpg>
-Package pdftex.def Info: ./images/fiji.jpg used on input line 100.
+Package pdftex.def Info: ./images/fiji.jpg used on input line 131.
 (pdftex.def)             Requested size: 54.70534pt x 54.7052pt.
 File: ./images/logos.pdf Graphic file (type pdf)
  <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 100.
+Package pdftex.def Info: ./images/logos.pdf used on input line 131.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
  [5
 
  <./images/java.png> <./images/OpenCL.png> <./images/fiji.jpg>]
-<./images/common_use.pdf, id=251, 1050.12296pt x 687.74887pt>
+<./images/common_use.pdf, id=274, 1050.12296pt x 687.74887pt>
 File: ./images/common_use.pdf Graphic file (type pdf)
 
 <use ./images/common_use.pdf>
-Package pdftex.def Info: ./images/common_use.pdf used on input line 113.
+Package pdftex.def Info: ./images/common_use.pdf used on input line 144.
 (pdftex.def)             Requested size: 303.93306pt x 199.05377pt.
 File: ./images/logos.pdf Graphic file (type pdf)
  <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 113.
+Package pdftex.def Info: ./images/logos.pdf used on input line 144.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
 
-Overfull \vbox (10.12161pt too high) detected at line 113
+Overfull \vbox (10.12161pt too high) detected at line 144
  []
 
 [6
 
  <./images/common_use.pdf>]
-<./images/graspj.png, id=467, 377.91188pt x 262.73157pt>
-File: ./images/graspj.png Graphic file (type png)
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   m
+l.181 \end{frame}
+                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
 
-<use ./images/graspj.png>
-Package pdftex.def Info: ./images/graspj.png used on input line 128.
-(pdftex.def)             Requested size: 162.09515pt x 112.69173pt.
+<./images/workflow.pdf, id=489, 231.8422pt x 418.08951pt>
+File: ./images/workflow.pdf Graphic file (type pdf)
+
+<use ./images/workflow.pdf>
+Package pdftex.def Info: ./images/workflow.pdf used on input line 181.
+(pdftex.def)             Requested size: 80.23958pt x 144.52731pt.
+File: ./images/logos.pdf Graphic file (type pdf)
+ <use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 181.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
  [7
 
- <./images/graspj.png>] (./graspj-presentation.toc
-LaTeX Info: Redefining \. on input line 2.
-LaTeX Info: Redefining \% on input line 2.
-)
+ <./images/workflow.pdf>] (./graspj-presentation.toc)
 File: ./images/logos.pdf Graphic file (type pdf)
-<use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 130.
+ <use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 184.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
  [8
 
 ]
-<./images/load_error.pdf, id=534, 1050.12296pt x 687.74887pt>
+<./images/load_error.pdf, id=568, 1050.12296pt x 687.74887pt>
 File: ./images/load_error.pdf Graphic file (type pdf)
 
 <use ./images/load_error.pdf>
-Package pdftex.def Info: ./images/load_error.pdf used on input line 141.
+Package pdftex.def Info: ./images/load_error.pdf used on input line 195.
 (pdftex.def)             Requested size: 303.93306pt x 199.05377pt.
 File: ./images/logos.pdf Graphic file (type pdf)
  <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 141.
+Package pdftex.def Info: ./images/logos.pdf used on input line 195.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
 
-Overfull \vbox (10.12161pt too high) detected at line 141
+Overfull \vbox (10.12161pt too high) detected at line 195
  []
 
 [9
 
  <./images/load_error.pdf>]
-<./images/results_error.pdf, id=749, 1050.12296pt x 687.74887pt>
+<./images/results_error.pdf, id=783, 1050.12296pt x 687.74887pt>
 File: ./images/results_error.pdf Graphic file (type pdf)
 
 <use ./images/results_error.pdf>
-Package pdftex.def Info: ./images/results_error.pdf used on input line 153.
+Package pdftex.def Info: ./images/results_error.pdf used on input line 207.
 (pdftex.def)             Requested size: 303.93306pt x 199.05377pt.
 File: ./images/logos.pdf Graphic file (type pdf)
  <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 153.
+Package pdftex.def Info: ./images/logos.pdf used on input line 207.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
 
-Overfull \vbox (10.12161pt too high) detected at line 153
+Overfull \vbox (10.12161pt too high) detected at line 207
  []
 
 [10
 
  <./images/results_error.pdf>]
-<./images/workflow_error.pdf, id=964, 1050.12296pt x 687.74887pt>
-File: ./images/workflow_error.pdf Graphic file (type pdf)
+<./images/opencl_error.pdf, id=999, 1050.12296pt x 687.74887pt>
+File: ./images/opencl_error.pdf Graphic file (type pdf)
 
-<use ./images/workflow_error.pdf>
-Package pdftex.def Info: ./images/workflow_error.pdf used on input line 166.
+<use ./images/opencl_error.pdf>
+Package pdftex.def Info: ./images/opencl_error.pdf used on input line 218.
 (pdftex.def)             Requested size: 303.93306pt x 199.05377pt.
 File: ./images/logos.pdf Graphic file (type pdf)
  <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 166.
+Package pdftex.def Info: ./images/logos.pdf used on input line 218.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
 
-Overfull \vbox (10.12161pt too high) detected at line 166
+Overfull \vbox (10.12161pt too high) detected at line 218
  []
 
 [11
 
- <./images/workflow_error.pdf>]
-<./images/opencl_error.pdf, id=1181, 1050.12296pt x 687.74887pt>
-File: ./images/opencl_error.pdf Graphic file (type pdf)
+ <./images/opencl_error.pdf>]
+<./images/workflow_error.pdf, id=1214, 1050.12296pt x 687.74887pt>
+File: ./images/workflow_error.pdf Graphic file (type pdf)
 
-<use ./images/opencl_error.pdf>
-Package pdftex.def Info: ./images/opencl_error.pdf used on input line 177.
+<use ./images/workflow_error.pdf>
+Package pdftex.def Info: ./images/workflow_error.pdf used on input line 230.
 (pdftex.def)             Requested size: 303.93306pt x 199.05377pt.
 File: ./images/logos.pdf Graphic file (type pdf)
  <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 177.
+Package pdftex.def Info: ./images/logos.pdf used on input line 230.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
 
-Overfull \vbox (10.12161pt too high) detected at line 177
+Overfull \vbox (10.12161pt too high) detected at line 230
  []
 
 [12
 
- <./images/opencl_error.pdf>] (./graspj-presentation.toc
-LaTeX Info: Redefining \. on input line 2.
-LaTeX Info: Redefining \% on input line 2.
-)
+ <./images/workflow_error.pdf>] (./graspj-presentation.toc)
 File: ./images/logos.pdf Graphic file (type pdf)
 
 <use ./images/logos.pdf>
-Package pdftex.def Info: ./images/logos.pdf used on input line 181.
+Package pdftex.def Info: ./images/logos.pdf used on input line 234.
 (pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
  [13
 
 ]
-\tf@nav=\write6
-\openout6 = `graspj-presentation.nav'.
+<./images/dao_paper.pdf, id=1467, 616.95514pt x 306.95865pt>
+File: ./images/dao_paper.pdf Graphic file (type pdf)
 
-\tf@toc=\write7
-\openout7 = `graspj-presentation.toc'.
+<use ./images/dao_paper.pdf>
+Package pdftex.def Info: ./images/dao_paper.pdf used on input line 273.
+(pdftex.def)             Requested size: 182.3586pt x 90.73pt.
 
-\tf@snm=\write8
-\openout8 = `graspj-presentation.snm'.
+<./images/dao_workflow.pdf, id=1468, 1204.5pt x 1204.5pt>
+File: ./images/dao_workflow.pdf Graphic file (type pdf)
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 187.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 187.
- (./graspj-presentation.aux
-LaTeX Info: Redefining \. on input line 25.
-LaTeX Info: Redefining \% on input line 25.
-)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 187.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 187.
+<use ./images/dao_workflow.pdf>
+Package pdftex.def Info: ./images/dao_workflow.pdf used on input line 273.
+(pdftex.def)             Requested size: 133.73264pt x 133.7268pt.
+File: ./images/logos.pdf Graphic file (type pdf)
+ <use ./images/logos.pdf>
+Package pdftex.def Info: ./images/logos.pdf used on input line 273.
+(pdftex.def)             Requested size: 153.87961pt x 42.67912pt.
+ [14
 
+ <./images/dao_paper.pdf> <./images/dao_workflow.pdf
 
-Package rerunfilecheck Warning: File `graspj-presentation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+pdfTeX warning: /usr/bin/pdflatex (file ./images/dao_workflow.pdf): PDF inclusi
+on: multiple pdfs with page group included in a single page
+>]
+\tf@nav=\write7
+\openout7 = `graspj-presentation.nav'.
 
-Package rerunfilecheck Info: Checksums for `graspj-presentation.out':
-(rerunfilecheck)             Before: 46369F8AAB5CA7B694DE7A835D81F9BF;470
-(rerunfilecheck)             After:  183506ED0CB9CFA8362EFE7ACA217965;607.
+\tf@toc=\write8
+\openout8 = `graspj-presentation.toc'.
+
+\tf@snm=\write9
+\openout9 = `graspj-presentation.snm'.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 276.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 276.
+ (./graspj-presentation.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 276.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 276.
+Package rerunfilecheck Info: File `graspj-presentation.out' has not changed.
+(rerunfilecheck)             Checksum: 7C3423EA166810E0880DC7DD4F6481A0;611.
+
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 187.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 276.
  ) 
 Here is how much of TeX's memory you used:
- 23501 strings out of 494917
- 469368 string characters out of 6178371
- 590270 words of memory out of 5000000
- 26140 multiletter control sequences out of 15000+600000
- 11345 words of font info for 41 fonts, out of 8000000 for 9000
+ 23617 strings out of 494917
+ 476602 string characters out of 6178371
+ 596803 words of memory out of 5000000
+ 26244 multiletter control sequences out of 15000+600000
+ 11696 words of font info for 42 fonts, out of 8000000 for 9000
  62 hyphenation exceptions out of 8191
- 57i,17n,69p,426b,877s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,69p,426b,687s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb>
-Output written on graspj-presentation.pdf (13 pages, 862130 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb>
+Output written on graspj-presentation.pdf (14 pages, 3679965 bytes).
 PDF statistics:
- 1465 PDF objects out of 1728 (max. 8388607)
- 1076 compressed objects within 11 object streams
- 38 named destinations out of 1000 (max. 500000)
- 199 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1538 PDF objects out of 1728 (max. 8388607)
+ 1137 compressed objects within 12 object streams
+ 39 named destinations out of 1000 (max. 500000)
+ 236 words of extra memory for PDF output out of 10000 (max. 10000000)
 

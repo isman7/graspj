@@ -1,6 +1,6 @@
 
 \documentclass[aspectratio=169]{beamer}
-\usepackage[spanish]{babel}
+\usepackage[english]{babel}
 \usepackage[utf8x]{inputenx}
 \usepackage{multicol} % indice en 2 columnas
 \usepackage{subfig}
@@ -9,6 +9,7 @@
 \usepackage{wrapfig} %preámbulo
 %\usepackage{pstricks}
 \usepackage{textpos}
+\usepackage{csvsimple}
 
 \usetheme{CambridgeUS}
 \usecolortheme{seahorse}
@@ -55,7 +56,37 @@
 \begin{frame}
 \frametitle{Introducing GraspJ}
 
+\begin{columns}[c]
 
+\column{0.45 \textwidth}
+
+ 
+
+\begin{figure}[h!]
+    \centering	\includegraphics[width=\textwidth]{./images/graspj_paper.pdf} 
+    %\caption{}
+    %\label{fig:use}
+    \end{figure} 
+
+\textbf{GraspJ: an open source,real-time analysis package for super-resolution imaging}  \\  
+Norman Brede and Melike Lakadamyali    
+
+\column{0.55\textwidth}
+
+Was developed by Norman Brede at AFIB as his master thesis. It is thougth:
+
+\begin{itemize}
+ \item As a plugin of ImageJ or FIJI.
+ \item To be able to run in a GPU based system.
+ \item To be able to run in realtime with Labview.  
+ \item To be open source.
+\end{itemize}
+
+
+
+\end{columns}
+    
+    
 \end{frame}
 
 
@@ -114,18 +145,41 @@
 
 
 
-\subsection{GraspJ Views}
-\frametitle{GraspJ Views}
-
+\subsection{Workflow details}
 \begin{frame}
 
-\begin{figure}[h!]
-    \centering	\includegraphics[width=0.4\textwidth]{./images/graspj.png} 
-    \caption{}
-    \label{fig:graspj}
+\frametitle{Workflow details}
+
+\begin{columns}
+
+
+\column{0.33\textwidth}
+    \begin{figure}
+    \centering	\includegraphics[trim=0cm 0.5m 0cm 0cm, clip, width=0.6\textwidth]{./images/workflow.pdf} 
+    %\caption{}
+    %\label{fig:use}
     \end{figure} 
- 
+    
+    \emph{\tiny Norman Brede and Melike Lakadamyali.}
+
+\column{0.66 \textwidth}
+
+\begin{itemize}
+ \item \emph{Live Producer:} creates the  packages of frames. 
+ \item \emph{Peak Finding:} Peaks are identified based on a threshold.
+ \item \emph{Peak Filtering:} Mean positions are determined
+ \item \emph{Filtering:} Localizations resulting from peak fitting can be filtered.
+ \item \emph{Trailing:} Peaks that appear in close proximity in consecutive frames are trailed together.
+ \item \emph{Drift correction:} Drift is determined by phase correlating consecutive, temporally split high resolution images.
+ \item \emph{Live Rendering:} Final localizations are rendered as Gaussians.
+\end{itemize}    
+    
+    
+\end{columns}
+
+    
 \end{frame}
+    
 
 \section{Fixing errors and features}
 
@@ -152,19 +206,6 @@
  
 \end{frame}
 
-
-
-\subsection{Workflow ``Mistake''}
-\begin{frame}
-\frametitle{Workflow ``Mistake''}
-\begin{figure}[h!]
-    \centering	\includegraphics[width=0.75\textwidth]{./images/workflow_error.pdf} 
-    %\caption{}
-    %\label{fig:use}
-    \end{figure} 
- 
-\end{frame}
-
 \subsection{OpenCL Exception}
 \begin{frame}
 \frametitle{OpenCL Exception}
@@ -176,12 +217,60 @@
  
 \end{frame}
 
+\subsection{Workflow ``Mistake''}
+\begin{frame}
+\frametitle{Workflow ``Mistake''}
+\begin{figure}[h!]
+    \centering	\includegraphics[width=0.75\textwidth]{./images/workflow_error.pdf} 
+    %\caption{}
+    %\label{fig:use}
+    \end{figure} 
+
+    
+\end{frame}
+
 
 
 \section{DAOSTORM}
 
 
+\begin{frame}
+\frametitle{DAOSTORM}
 
+\begin{columns}[c]
+
+\column{0.45 \textwidth}
+
+ 
+
+\begin{figure}[h!]
+    \centering	\includegraphics[width=\textwidth]{./images/dao_paper.pdf} 
+    %\caption{}
+    %\label{fig:use}
+    \end{figure} 
+    
+\textbf{DAOSTORM: an algorithm for high-density super-resolution microscopy}  \\  
+Seamus J Holden, Stephan Uphoff \& Achillefs N Kapanidis
+
+
+\column{0.55\textwidth}
+
+Was developed forking DAOPHOT II algotrithm from star detections. The basis of the algorithm are: 
+
+\begin{figure}[h!]
+    \centering	\includegraphics[width=0.6\textwidth]{./images/dao_workflow.pdf} 
+    %\caption{}
+    %\label{fig:use}
+    \end{figure} 
+
+
+
+
+
+\end{columns}
+    
+    
+\end{frame}
 
 
 \end{document}
