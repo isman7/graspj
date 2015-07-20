@@ -1,6 +1,7 @@
 package eu.brede.graspj.pipeline.processors.renderer;
 
 import com.jogamp.opencl.CLKernel;
+import com.jogamp.opencl.CLProgram;
 
 import eu.brede.graspj.datatypes.Rendering;
 
@@ -22,8 +23,9 @@ public class Gaussian2D extends CommonGaussian {
 
 	@Override
 	protected CLKernel newKernel() {
-		return cl.getProgramManager().getProgram("CLProgramGaussian2DRenderer")
-				.createCLKernel("render_spots");
+		CLProgram cl2D = cl.getProgramManager().getProgram("CLProgramGaussian2DRenderer");
+		System.out.println(cl2D.getSource());
+		return cl2D.createCLKernel("render_spots");
 	}
 
 	@Override
