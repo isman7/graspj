@@ -57,7 +57,7 @@ public class GaussianColorCoded3D extends CommonGaussian {
 	@Override
 	protected CLKernel newKernel() {
 		CLProgram cl3D = cl.getProgramManager().getProgram("CLProgramGaussianCC3DRenderer");
-		System.out.println(cl3D.getSource());
+		//System.out.println(cl3D.getSource());
 		return cl3D.createCLKernel("render_spots");
 	}
 

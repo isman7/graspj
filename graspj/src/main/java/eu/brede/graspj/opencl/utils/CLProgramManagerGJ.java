@@ -23,7 +23,9 @@ public class CLProgramManagerGJ extends CLProgramManager {
 			programSource = ResourceTools.getResourceAsString(
 					"eu/brede/graspj/opencl/src/clprograms/" + programName);
 		}
-		
+		/*System.out.println("-------Begin CL Program-------");
+		System.out.println(programSource);
+		System.out.println("-------End CL Program-------");*/
 		CLProgram program =  context.createProgram(programSource).build();
 		programs.put(programName, program);
 		return program;

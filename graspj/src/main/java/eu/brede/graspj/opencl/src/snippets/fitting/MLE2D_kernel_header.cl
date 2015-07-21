@@ -8,7 +8,8 @@ kernel void fit_spots	(
 							private int box_radius,
 							private int frame_width,
 							private int frame_height,
-							read_only global ushort* image_buffer,
+							global ushort* image_buffer,
+							//read_only global ushort* image_buffer,
 							global ushort* candidates,
 							global float* spots
 						)

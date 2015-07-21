@@ -24,7 +24,7 @@ public class Gaussian2D extends CommonGaussian {
 	@Override
 	protected CLKernel newKernel() {
 		CLProgram cl2D = cl.getProgramManager().getProgram("CLProgramGaussian2DRenderer");
-		System.out.println(cl2D.getSource());
+		//System.out.println(cl2D.getSource());
 		return cl2D.createCLKernel("render_spots");
 	}
 
