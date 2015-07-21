@@ -49,7 +49,7 @@ import eu.brede.graspj.pipeline.processors.renderer.SpotRenderer;
 import eu.brede.graspj.pipeline.processors.trailgenerator.TrailGenerator;
 import eu.brede.graspj.pipeline.producers.LiveProducer;
 import eu.brede.graspj.pipeline.producers.ProductionEngine;
-import eu.brede.graspj.pipeline.processors.daostorm.DaoStorm;;
+
 
 public class WorkflowWizardView extends View {
 
@@ -193,7 +193,7 @@ public class WorkflowWizardView extends View {
 		EnhancedConfig optionalFeatures = (EnhancedConfig) settings
 				.get("optionalFeatures");
 		Option daoStorm = optionalFeatures.gett("daoStorm");
-		
+		/*
 		if (daoStorm.isSelected()) {
 			DaoStorm finder = new DaoStorm();
 			System.out.println("DAOSTORM Choosen");
@@ -203,7 +203,11 @@ public class WorkflowWizardView extends View {
 			SpotFinderJava finder = new SpotFinderJava();
 			finder.setConfig((FindConfig) settings.get("findConfig"));
 			processors.add(finder);
-		}
+		}*/
+		
+		SpotFinderJava finder = new SpotFinderJava();
+		finder.setConfig((FindConfig) settings.get("findConfig"));
+		processors.add(finder);
 		
 		Class<? extends SpotRenderer> rendererClass = null;
 
