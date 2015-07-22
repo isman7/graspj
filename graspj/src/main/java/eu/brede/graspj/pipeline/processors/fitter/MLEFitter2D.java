@@ -114,16 +114,15 @@ public class MLEFitter2D extends AbstractAIProcessor {
 		logger.info("Package {} completed fitting with {} spots/s", packageNr,
 				df.format(speed));
 
-		System.out.println("Package " + packageNr +  " completed fitting with " + df.format(speed) + " spots/s");
-
-		
 		queue.putReadBuffer(spots, true);
 
 		item.getSpots().getSpots().setCLBuffer(spots);
 
 		spotCount = item.getSpots().getSpotCount();
 		logger.info("Spots fitted: {}", spotCount);
-
+		
+		System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
+		System.out.println(item.getSpots().getSpots().getBuffer().get());
 		item.getSpots().rewindAllBuffers();
 
 		// try to free direct and CL memory
