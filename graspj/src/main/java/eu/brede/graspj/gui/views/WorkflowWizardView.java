@@ -11,6 +11,7 @@ import org.ciscavate.cjwizard.WizardPage;
 import org.ciscavate.cjwizard.WizardSettings;
 import org.ciscavate.cjwizard.pagetemplates.PageTemplate;
 
+import eu.benito.graspj.pipeline.daostorm.DAOFitter2D;
 import eu.brede.common.config.EnhancedConfig;
 import eu.brede.common.gui.wizard.CustomPageTemplate;
 import eu.brede.common.gui.wizard.LinearPageFactory;
@@ -217,6 +218,11 @@ public class WorkflowWizardView extends View {
 		
 		switch (dimensionality.getChosen()) {
 		case "2D DAOSTORM":
+			DAOFitter2D fitterDAO = new DAOFitter2D();
+			fitterDAO.setConfig((FitConfig) settings.get("fitConfig"));
+			processors.add(fitterDAO);
+			rendererClass = Gaussian2D.class;
+			break;
 		case "2D":
 			MLEFitter2D fitter = new MLEFitter2D();
 			fitter.setConfig((FitConfig) settings.get("fitConfig"));
