@@ -192,8 +192,8 @@ public class WorkflowWizardView extends View {
 		
 		EnhancedConfig optionalFeatures = (EnhancedConfig) settings
 				.get("optionalFeatures");
-		Option daoStorm = optionalFeatures.gett("daoStorm");
-		/*
+		/*Option daoStorm = optionalFeatures.gett("daoStorm");
+		
 		if (daoStorm.isSelected()) {
 			DaoStorm finder = new DaoStorm();
 			System.out.println("DAOSTORM Choosen");
@@ -216,6 +216,7 @@ public class WorkflowWizardView extends View {
 		
 		
 		switch (dimensionality.getChosen()) {
+		case "2D DAOSTORM":
 		case "2D":
 			MLEFitter2D fitter = new MLEFitter2D();
 			fitter.setConfig((FitConfig) settings.get("fitConfig"));

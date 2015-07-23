@@ -53,7 +53,7 @@ public class AnalysisTypeChooser extends WizardPage {
 		config.setPrefix("wizard.AnalysisTypeChooser.");
 		
 		
-		ObjectChoice<String> dimChoice = new ObjectChoice<>("2D","3Dastigmatism");
+		ObjectChoice<String> dimChoice = new ObjectChoice<>("2D","2D DAOSTORM","3Dastigmatism");
 		dimChoice.setChosen("2D");
 		
 		config.put("dimensionality", dimChoice);
@@ -64,7 +64,6 @@ public class AnalysisTypeChooser extends WizardPage {
 		else {			
 //			config.put("frameCycle", new Cycle());
 		}
-		
 		
 		config.put("renderAllChannelImage", true);
 		

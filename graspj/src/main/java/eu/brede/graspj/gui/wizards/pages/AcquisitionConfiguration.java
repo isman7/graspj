@@ -55,6 +55,18 @@ public class AcquisitionConfiguration extends WizardPage {
 	public void rendering(List<WizardPage> path, WizardSettings settings) {
 		
 		AcquisitionConfig acqConfig = new AcquisitionConfig();
+		
+		EnhancedConfig displayConfig = (EnhancedConfig) settings
+				.get("displayConfig");
+		
+		ObjectChoice<String> dimensionality = displayConfig
+				.gett("dimensionality");
+		switch (dimensionality.getChosen()) {
+		case "2D DAOSTORM":
+			acqConfig.put("framesPerPackage", 1);
+			break;
+		}
+		
 		FindConfig findConfig = new FindConfig();
 		
 		if((boolean) settings.get("framesAvailable")) {
@@ -92,7 +104,7 @@ public class AcquisitionConfiguration extends WizardPage {
 				Cycle cycle = AutoDetect.detectCycle(map, numColors, maxNcycle);
 				acqConfig.put("frameCycle", cycle);
 				
-				ObjectChoice<ProductionEngine> choosenIn = (ObjectChoice<ProductionEngine>) settings.get("srcChoice");
+				//ObjectChoice<ProductionEngine> choosenIn = (ObjectChoice<ProductionEngine>) settings.get("srcChoice");
 				
 				//System.out.println('.' + choosenIn.getChoices().toString() + '.');
 						
@@ -105,12 +117,8 @@ public class AcquisitionConfiguration extends WizardPage {
 			}
 		}
 		
-		EnhancedConfig displayConfig = (EnhancedConfig) settings
-				.get("displayConfig");
-		
-		ObjectChoice<String> dimensionality = displayConfig
-				.gett("dimensionality");
 		switch (dimensionality.getChosen()) {
+		case "2D DAOSTORM":
 		case "2D":
 			cfFitConfig.setConfig(new FitConfig());
 			break;
@@ -118,10 +126,6 @@ public class AcquisitionConfiguration extends WizardPage {
 			cfFitConfig.setConfig(new MLE3DConfig());
 			break;
 		}
-		
-		
-		
-		
 		
 		
 		cfAcqConfig.setConfig(acqConfig);
