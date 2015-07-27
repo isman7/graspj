@@ -7,6 +7,9 @@ import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 import java.text.DecimalFormat;
 import java.util.concurrent.Callable;
+import java.util.Arrays;
+
+import Jama.*;
 
 import org.perf4j.StopWatch;
 import org.slf4j.Logger;
@@ -122,9 +125,35 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		logger.info("Spots fitted: {}", spotCount);
 		
 		System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
-		System.out.println(item.getSpots().getSpots().getBuffer().get());
-		item.getSpots().rewindAllBuffers();
-
+		//System.out.println(item.getSpots().getSpots().getBuffer().get());
+		//Trying to print all the data in the buffer
+		
+		//FloatBuffer bufferSpots = item.getSpots().getSpots().getBuffer();
+		/*int ii = 0;
+		while (bufferSpots.hasRemaining() && (ii<20)){
+			System.out.println(bufferSpots.get());
+			ii++;
+		}*/
+		
+		/* Buffer order:
+		 * 
+		 * x, y, z, sx, sy, sz, I, B, sI, sB
+		 * 
+		 * and frameNr is packageNr in this case. 
+		 * 
+		 * CSV order: 
+		 * 
+		 * x, sx, y, sy, z, sz, I, sI, B, sB, frameNr
+		 * 
+		 */
+		
+		BufferHolder<ShortBuffer> frameBufferHolder = item.getNotes().gett("frameBuffer");
+		ShortBuffer imageBuffer = frameBufferHolder.getBuffer();
+		//System.out.println(imageBuffer.capacity());
+		short[][] imageArray = Buff2Mat(imageBuffer, 256);
+		
+		float[][] spotsArray = Buff2Mat(item.getSpots().getSpots().getBuffer(), 10);
+		
 		// try to free direct and CL memory
 		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
 		// item.getAcquisition().getFrameBuffer().free();
@@ -151,6 +180,53 @@ public class DAOFitter2D extends AbstractAIProcessor {
 	@Override
 	public void setConfig(EnhancedConfig config) {
 		this.config = (FitConfig) config; // TODO wrap instead
+	}
+	
+	
+	private float[][] Buff2Mat(FloatBuffer buffer, int jj){
+		int ii = buffer.capacity()/jj;
+		float[][] matrix = new float[ii][jj];
+		for (int i=0; i<ii; i++){
+			for (int j=0; j<jj; j++){
+				matrix[i][j] = buffer.get(); 
+			}
+		}
+		
+		return matrix;	
+		
+	}
+	
+	private short[][] Buff2Mat(ShortBuffer buffer, int jj){
+		int ii = buffer.capacity()/jj;
+		short[][] matrix = new short[ii][jj];
+		for (int i=0; i<ii; i++){
+			for (int j=0; j<jj; j++){
+				matrix[i][j] = buffer.get(); 
+			}
+		}
+		
+		return matrix;	
+		
+	}
+	
+	private short[][] fitAndSubs(short[][] imageArr, float[][] spotsArr){
+		//Matrix subsMat = new Matrix(imageArr.length, imageArr[0].length);
+		Matrix gaussMat = new Matrix(imageArr.length, imageArr[0].length);
+		/*double[][] imageDouble = new double[imageArr.length][imageArr[0].length];
+		for(int i = 0; i < imageArr.length; i++)
+	    {
+	        for(int j = 0; j < imageArr[0].length; j++) {
+	        	Short value = new Short(imageArr[i][j]);
+	        	imageDouble[i][j] = value.doubleValue();
+	        }
+	    }
+		
+		Matrix imageMat = new Matrix(imageDouble);*/
+		
+		
+		
+		short[][] subsArray = new short[imageArr.length][imageArr[0].length];
+		return subsArray;
 	}
 
 }
