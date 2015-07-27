@@ -223,10 +223,50 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		
 		Matrix imageMat = new Matrix(imageDouble);*/
 		
+		for (int i = 0; i < spotsArr.length; i++){
+			
+			gaussMat = gaussMat.plus(calcGaussian(spotsArr[i], imageArr.length, imageArr[0].length));
+		}
 		
+		double[][] gaussArr = gaussMat.getArray();
 		
 		short[][] subsArray = new short[imageArr.length][imageArr[0].length];
 		return subsArray;
+	}
+	
+	private Matrix calcGaussian(float[] gaussData, int width, int heigth){
+		Matrix calcGauss = new Matrix(width, heigth);
+		/* Buffer order:
+		 * x, y, z, sx, sy, sz, I, B, sI, sB */
+		float x  = gaussData[0];
+		float y  = gaussData[1];
+//		float z  = gaussData[2];
+		float sx = gaussData[3];
+		float sy = gaussData[4];
+//		float sz = gaussData[5];
+		float I  = gaussData[6];
+		float B  = gaussData[7];
+		float sI = gaussData[8];
+		float sB = gaussData[9];
+		
+		if ((sx == Float.NaN) || (sy == Float.NaN)){
+			return calcGauss;
+		}
+		
+		if ((sx > 100) || (sy > 100)){
+			return calcGauss;
+		}
+		
+		for (int i=0; i<width; i++){
+			for (int j=0; j<heigth; j++){
+				double gaussianValue = 0;
+				calcGauss.set(i, j, calcGauss.get(i, j) + gaussianValue);
+			}
+		}
+		
+		
+		
+		return calcGauss;
 	}
 
 }
