@@ -11,6 +11,9 @@ import java.util.Arrays;
 
 import Jama.*;
 
+import java.math.*;
+
+import org.apache.commons.math3.special.Erf;
 import org.perf4j.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -137,7 +140,7 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		
 		/* Buffer order:
 		 * 
-		 * x, y, z, sx, sy, sz, I, B, sI, sB
+		 * x, y, z, I, B, sx, sy, sz, sI, sB
 		 * 
 		 * and frameNr is packageNr in this case. 
 		 * 
@@ -153,6 +156,15 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		short[][] imageArray = Buff2Mat(imageBuffer, 256);
 		
 		float[][] spotsArray = Buff2Mat(item.getSpots().getSpots().getBuffer(), 10);
+		
+		/*float pixel_size = item.getConfig().getFloat("pixelSize"); 
+		float offset_x   = item.getConfig().getFloat("offsetX"); 
+		float offset_y   = item.getConfig().getFloat("offsetY"); */
+		
+		short[][] residArray = calcResidual(imageArray, spotsArray, new Float(157), 0, 0);
+		
+		System.out.println(imageArray[15][41]);
+		System.out.println(residArray[15][41]);
 		
 		// try to free direct and CL memory
 		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
@@ -209,7 +221,7 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		
 	}
 	
-	private short[][] fitAndSubs(short[][] imageArr, float[][] spotsArr){
+	private short[][] calcResidual(short[][] imageArr, float[][] spotsArr, float pixel_size, float offset_x, float offset_y){
 		//Matrix subsMat = new Matrix(imageArr.length, imageArr[0].length);
 		Matrix gaussMat = new Matrix(imageArr.length, imageArr[0].length);
 		/*double[][] imageDouble = new double[imageArr.length][imageArr[0].length];
@@ -225,27 +237,33 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		
 		for (int i = 0; i < spotsArr.length; i++){
 			
-			gaussMat = gaussMat.plus(calcGaussian(spotsArr[i], imageArr.length, imageArr[0].length));
+			gaussMat = gaussMat.plus(calcGaussian(spotsArr[i], imageArr.length, imageArr[0].length, pixel_size, offset_x, offset_y));
 		}
 		
-		double[][] gaussArr = gaussMat.getArray();
 		
 		short[][] subsArray = new short[imageArr.length][imageArr[0].length];
+		for(int i = 0; i < imageArr.length; i++) {
+	        for(int j = 0; j < imageArr[0].length; j++) {
+	        	// The substraction must be negative, so int appears... 
+	        	subsArray[i][j] = (short) (imageArr[i][j] - (short) gaussMat.get(i, j));
+	        }
+	    }
+		
 		return subsArray;
 	}
 	
-	private Matrix calcGaussian(float[] gaussData, int width, int heigth){
-		Matrix calcGauss = new Matrix(width, heigth);
+	private Matrix calcGaussian(float[] gaussData, int width, int height, float pixel_size, float offset_x, float offset_y){
+		Matrix calcGauss = new Matrix(width, height);
 		/* Buffer order:
-		 * x, y, z, sx, sy, sz, I, B, sI, sB */
+		 * x, y, z, I, B, sx, sy, sz, sI, sB */
 		float x  = gaussData[0];
 		float y  = gaussData[1];
 //		float z  = gaussData[2];
-		float sx = gaussData[3];
-		float sy = gaussData[4];
-//		float sz = gaussData[5];
-		float I  = gaussData[6];
-		float B  = gaussData[7];
+		float I  = gaussData[3];
+		float B  = gaussData[4];
+		float sx = gaussData[5];
+		float sy = gaussData[6];
+//		float sz = gaussData[7];
 		float sI = gaussData[8];
 		float sB = gaussData[9];
 		
@@ -256,11 +274,44 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		if ((sx > 100) || (sy > 100)){
 			return calcGauss;
 		}
+
 		
-		for (int i=0; i<width; i++){
-			for (int j=0; j<heigth; j++){
+		float sx_px=(sx/pixel_size);
+		float sy_px=(sy/pixel_size);
+		int box_radius = (int) Math.ceil(3*Math.max(sx_px, sy_px));
+		float sx_sqrt2 =  sx_px * (float) Math.sqrt(2);
+		float sy_sqrt2 =  sy_px * (float) Math.sqrt(2);
+		
+		float center_x = ((x+offset_x)/pixel_size);
+		float center_y = ((y+offset_y)/pixel_size);
+		
+		int start_x = (int) Math.max(Math.floor(center_x-box_radius),0);
+		int end_x   = (int) Math.min(Math.ceil(center_x+box_radius),width-1);
+		int start_y = (int) Math.max(Math.floor(center_y-box_radius),0);
+		int end_y   = (int) Math.min(Math.ceil(center_y+box_radius),height-1);
+
+		
+		double x_tx_p12, x_tx_m12, y_ty_p12, y_ty_m12;
+		double dE_x, dE_y;
+		
+		for (int i=start_y; i<end_y; i++){
+			for (int j=start_x; j< end_x; j++){
 				double gaussianValue = 0;
-				calcGauss.set(i, j, calcGauss.get(i, j) + gaussianValue);
+				
+				/*x_tx_p12 = f_i_ti_p12(j,center_x);
+				x_tx_m12 = f_i_ti_m12(j,center_x);
+				
+				y_ty_p12 = f_i_ti_p12(i,center_y);
+				y_ty_m12 = f_i_ti_m12(i,center_y);
+				
+				dE_x = f_dE_i(x_tx_p12,x_tx_m12,sx_sqrt2);
+				dE_y = f_dE_i(y_ty_p12,y_ty_m12,sy_sqrt2);*/
+				
+				dE_x = f_dE_i(j, center_x ,sx);
+				dE_y = f_dE_i(i, center_y ,sy);				
+				
+				gaussianValue = (I/2)*dE_y*dE_x; 
+				calcGauss.set(i, j, gaussianValue);
 			}
 		}
 		
@@ -268,5 +319,29 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		
 		return calcGauss;
 	}
+	
+/*	private double f_dE_i(double i_ti_p12, double i_ti_m12, double s_sqrt2)
+	{ 
+		return 0.5d * (  Erf.erf(i_ti_p12/s_sqrt2) - Erf.erf(i_ti_m12/s_sqrt2));
+	}*/
+	
+	private double f_dE_i(double i, double ti, double s)
+	{ 
+		return Math.exp(-Math.pow((i-ti)/(2*s), 2));
+	}
+	
+	private double f_i_ti_p12 (float i, float ti)
+	{
+		return i-ti+0.5d;
+	}
+	
+	private double f_i_ti_m12 (float i, float ti)
+	{
+		return i-ti-0.5d;
+	}
+
+	
+	
+	
 
 }
