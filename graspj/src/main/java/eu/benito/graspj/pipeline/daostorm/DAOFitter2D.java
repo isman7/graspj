@@ -25,11 +25,13 @@ import eu.brede.common.config.EnhancedConfig;
 import eu.brede.common.opencl.utils.CLResourceManager;
 import eu.brede.common.opencl.utils.CLSystem;
 import eu.brede.common.opencl.utils.CLTools;
+import eu.brede.graspj.configs.acquisition.AcquisitionConfig;
 import eu.brede.graspj.configs.fit.FitConfig;
 import eu.brede.graspj.datatypes.AnalysisItem;
 import eu.brede.graspj.datatypes.bufferholder.BufferHolder;
 import eu.brede.graspj.opencl.utils.CLSystemGJ;
 import eu.brede.graspj.pipeline.processors.AbstractAIProcessor;
+import eu.brede.graspj.utils.Buffers;
 import eu.brede.graspj.utils.Utils;
 
 public class DAOFitter2D extends AbstractAIProcessor {
@@ -152,16 +154,25 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		BufferHolder<ShortBuffer> frameBufferHolder = item.getNotes().gett("frameBuffer");
 		ShortBuffer imageBuffer = frameBufferHolder.getBuffer();
 		//System.out.println(imageBuffer.capacity());
-		short[][] imageArray = Buff2Mat(imageBuffer, 256);
+		short[][] imageArray = Buff2Mat(imageBuffer, 
+										item.getAcquisitionConfig().getDimensions().frameWidth
+										);
 		
 		float[][] spotsArray = Buff2Mat(item.getSpots().getSpots().getBuffer(), 10);
 		
 		/*float pixel_size = item.getConfig().getFloat("pixelSize"); 
 		float offset_x   = item.getConfig().getFloat("offsetX"); 
 		float offset_y   = item.getConfig().getFloat("offsetY"); */
+
+
+		short[][] residArray = calcResidual(imageArray, 
+											spotsArray, 
+											item.getAcquisitionConfig().getFloat("pixelSize"), 
+											0, 0);
 		
-		short[][] residArray = calcResidual(imageArray, spotsArray, new Float(157), 0, 0);
+		ShortBuffer residBuff = Mat2Buff(residArray);
 		
+		System.out.println(residBuff.capacity());
 		// try to free direct and CL memory
 		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
 		// item.getAcquisition().getFrameBuffer().free();
@@ -216,6 +227,18 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		return matrix;	
 		
 	}
+	
+	private ShortBuffer Mat2Buff(short[][] imageMat){
+		int cap = imageMat.length * imageMat[0].length;
+		ShortBuffer imageBuffer = Buffers.newDirectShortBuffer(cap);
+		for (int ii=0; ii<imageMat.length; ii++){
+			for (int jj=0; jj<imageMat[0].length; jj++){
+				imageBuffer.put(imageMat[ii][jj]);
+			}
+		}
+		return imageBuffer;
+	}
+	
 	
 	private short[][] calcResidual(short[][] imageArr, float[][] spotsArr, float pixel_size, float offset_x, float offset_y){
 		//Matrix subsMat = new Matrix(imageArr.length, imageArr[0].length);
