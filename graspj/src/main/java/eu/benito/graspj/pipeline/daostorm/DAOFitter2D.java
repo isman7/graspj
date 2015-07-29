@@ -7,7 +7,6 @@ import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 import java.text.DecimalFormat;
 import java.util.concurrent.Callable;
-import java.util.Arrays;
 
 import Jama.*;
 
@@ -163,9 +162,6 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		
 		short[][] residArray = calcResidual(imageArray, spotsArray, new Float(157), 0, 0);
 		
-		System.out.println(imageArray[15][41]);
-		System.out.println(residArray[15][41]);
-		
 		// try to free direct and CL memory
 		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
 		// item.getAcquisition().getFrameBuffer().free();
@@ -310,7 +306,7 @@ public class DAOFitter2D extends AbstractAIProcessor {
 				dE_x = f_dE_i(j, center_x ,sx);
 				dE_y = f_dE_i(i, center_y ,sy);				
 				
-				gaussianValue = (I/2)*dE_y*dE_x; 
+				gaussianValue = ((I/2)-B)*dE_y*dE_x; 
 				calcGauss.set(i, j, gaussianValue);
 			}
 		}
