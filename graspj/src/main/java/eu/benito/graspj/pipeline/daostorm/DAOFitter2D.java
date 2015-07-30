@@ -172,7 +172,7 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		
 		ShortBuffer residBuff = Mat2Buff(residArray);
 		
-		System.out.println(residBuff.capacity());
+		
 		// try to free direct and CL memory
 		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
 		// item.getAcquisition().getFrameBuffer().free();
