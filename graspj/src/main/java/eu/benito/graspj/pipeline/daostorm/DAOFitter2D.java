@@ -8,7 +8,7 @@ import java.nio.ShortBuffer;
 import java.text.DecimalFormat;
 import java.util.concurrent.Callable;
 
-import Jama.*;
+//import Jama.*;
 
 import java.math.*;
 
@@ -242,7 +242,7 @@ public class DAOFitter2D extends AbstractAIProcessor {
 	
 	private short[][] calcResidual(short[][] imageArr, float[][] spotsArr, float pixel_size, float offset_x, float offset_y){
 		//Matrix subsMat = new Matrix(imageArr.length, imageArr[0].length);
-		Matrix gaussMat = new Matrix(imageArr.length, imageArr[0].length);
+		//short[][] gaussMat = new short[imageArr.length][imageArr[0].length];
 		/*double[][] imageDouble = new double[imageArr.length][imageArr[0].length];
 		for(int i = 0; i < imageArr.length; i++)
 	    {
@@ -253,26 +253,22 @@ public class DAOFitter2D extends AbstractAIProcessor {
 	    }
 		
 		Matrix imageMat = new Matrix(imageDouble);*/
-		
-		for (int i = 0; i < spotsArr.length; i++){
-			
-			gaussMat = gaussMat.plus(calcGaussian(spotsArr[i], imageArr.length, imageArr[0].length, pixel_size, offset_x, offset_y));
-		}
-		
-		
 		short[][] subsArray = new short[imageArr.length][imageArr[0].length];
-		for(int i = 0; i < imageArr.length; i++) {
-	        for(int j = 0; j < imageArr[0].length; j++) {
-	        	// The substraction must be negative, so int appears... 
-	        	subsArray[i][j] = (short) (imageArr[i][j] - (short) gaussMat.get(i, j));
-	        }
-	    }
+		for (int i = 0; i < spotsArr.length; i++){
+			short[][] newGaussMat = calcGaussian(spotsArr[i], imageArr.length, imageArr[0].length, pixel_size, offset_x, offset_y);
+			for(int ii = 0; ii < imageArr.length; ii++) {
+		        for(int jj = 0; jj < imageArr[0].length; jj++) {
+		        	// The substraction must be negative, so int appears... 
+		        	subsArray[ii][jj] = (short) (imageArr[ii][jj] - newGaussMat[i][jj]);
+		        }
+		    }
+		}
 		
 		return subsArray;
 	}
 	
-	private Matrix calcGaussian(float[] gaussData, int width, int height, float pixel_size, float offset_x, float offset_y){
-		Matrix calcGauss = new Matrix(width, height);
+	private short[][] calcGaussian(float[] gaussData, int width, int height, float pixel_size, float offset_x, float offset_y){
+		short[][] calcGauss = new short[width][height];
 		/* Buffer order:
 		 * x, y, z, I, B, sx, sy, sz, sI, sB */
 		float x  = gaussData[0];
@@ -330,7 +326,7 @@ public class DAOFitter2D extends AbstractAIProcessor {
 				dE_y = f_dE_i(i, center_y ,sy);				
 				
 				gaussianValue = ((I/2)-B)*dE_y*dE_x; 
-				calcGauss.set(i, j, gaussianValue);
+				calcGauss[i][j] = (short) gaussianValue;
 			}
 		}
 		
