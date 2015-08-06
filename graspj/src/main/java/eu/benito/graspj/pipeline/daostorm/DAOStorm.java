@@ -35,19 +35,19 @@ import eu.brede.graspj.pipeline.processors.finder.SpotFinderJava;
 import eu.brede.graspj.utils.Buffers;
 import eu.brede.graspj.utils.Utils;
 
-public class DAOFitter2D extends AbstractAIProcessor {
+public class DAOStorm extends AbstractAIProcessor {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	final static Logger logger = LoggerFactory.getLogger(DAOFitter2D.class);
+	final static Logger logger = LoggerFactory.getLogger(DAOStorm.class);
 
 	private FitConfig config;
 	private int packageNr = 0;
 	protected String clProgramFitter = "CLProgramMLE2DFitter";
 
-	public DAOFitter2D() {
+	public DAOStorm() {
 		config = new FitConfig();
 	}
 
