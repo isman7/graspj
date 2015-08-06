@@ -43,103 +43,8 @@ public class DAOStorm extends AbstractAIProcessor {
 
 	final static Logger logger = LoggerFactory.getLogger(DAOStorm.class);
 
-	private FitConfig config;
-	private int packageNr = 0;
-	protected String clProgramFitter = "CLProgramMLE2DFitter";
-
-	public DAOStorm() {
-		config = new FitConfig();
-	}
-
 	@Override
 	public void process(AnalysisItem item) {
-		CLResourceManager manager = new CLResourceManager();
-		final CLSystem cl = CLSystemGJ.getDefault();;
-		CLCommandQueue queue = cl.pollQueue();
-
-		BufferHolder<ShortBuffer> candidates = item.getNotes().gett(
-				"candidates");
-		CLBuffer<ShortBuffer> frameBuffer = manager.watch(item.getNotes()
-				.<BufferHolder<ShortBuffer>> gett("frameBuffer")
-				.getCLBuffer(cl));
-
-		int spotCount = item.getSpots().getSpotCount();
-
-		// TEMP FIX, why required? For Buffer creation?!
-		if (spotCount == 0) {
-			spotCount = 1;
-		}
-
-		int valuesPerDimension = 2;
-		final int spotBufferSize = spotCount * getConfig().getInt("fitDimension")
-				* valuesPerDimension;
-
-		CLBuffer<FloatBuffer> spots = manager.watch(Utils
-				.tryAllocation(new Callable<CLBuffer<FloatBuffer>>() {
-
-					@Override
-					public CLBuffer<FloatBuffer> call() throws Exception {
-						return cl.getContext()
-								.createFloatBuffer(spotBufferSize, READ_WRITE);
-					}
-
-				}));
-
-		CLKernel fitKernel = null;// clPipe.getProgram("GraspJ_peak_fitting.cl").createCLKernel("graspj");
-
-		fitKernel = manager.watch(cl.getProgramManager().getProgram(clProgramFitter)
-				.createCLKernel("fit_spots"));
-
-		fitKernel
-				.putArg(item.getAcquisitionConfig().getFloat("pixelSize"))
-				.putArg(getConfig().getFloat("sigmaPSF"))
-				.putArg(item.getAcquisitionConfig().getFloat("countConversion"))
-                .putArg(item.getAcquisitionConfig().getInt("countOffset"))
-				.putArg(getConfig().getInt("fitDimension"))
-				.putArg(getConfig().getInt("iterations"))
-				.putArg(getConfig().getInt("boxRadius"))
-				.putArg(item.getAcquisitionConfig().getDimensions().frameWidth)
-				.putArg(item.getAcquisitionConfig().getDimensions().frameHeight)
-				.putArg(frameBuffer)
-				.putArg(manager.watch(candidates.getCLBuffer(cl)))
-				.putArg(spots);
-
-		int spotsPerExecStep = 16000;
-		int localWorkSize = 64;
-		int spotOffset = 0;
-
-		StopWatch stopWatch = new StopWatch();
-
-		CLTools.steppedKernelEnqueue(queue, fitKernel, spotCount, spotOffset,
-				spotsPerExecStep, localWorkSize);
-
-		stopWatch.stop();
-
-		double execTime = Math.max(1, stopWatch.getElapsedTime());
-		double speed = (spotCount * 1000) / execTime;
-		DecimalFormat df = new DecimalFormat("#");
-
-		logger.info("Package {} completed fitting with {} spots/s", packageNr,
-				df.format(speed));
-
-		queue.putReadBuffer(spots, true);
-
-		item.getSpots().getSpots().setCLBuffer(spots);
-
-		spotCount = item.getSpots().getSpotCount();
-		logger.info("Spots fitted: {}", spotCount);
-		
-		System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
-		//System.out.println(item.getSpots().getSpots().getBuffer().get());
-		//Trying to print all the data in the buffer
-		
-		//FloatBuffer bufferSpots = item.getSpots().getSpots().getBuffer();
-		/*int ii = 0;
-		while (bufferSpots.hasRemaining() && (ii<20)){
-			System.out.println(bufferSpots.get());
-			ii++;
-		}*/
-		
 		/* Buffer order:
 		 * 
 		 * x, y, z, I, B, sx, sy, sz, sI, sB
@@ -173,128 +78,12 @@ public class DAOStorm extends AbstractAIProcessor {
 		
 		ShortBuffer residBuff = Mat2Buff(residArray);
 		
-		
-		// try to free direct and CL memory
-		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
-		// item.getAcquisition().getFrameBuffer().free();
-		candidates.free();
-		/*
-		 * Trying first DAOSTORM iteration.
-		 * 
-		 */
-		//item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").append(residBuff);
-		
-		//frameBufferHolder.free();
 		frameBufferHolder.setBuffer(Mat2Buff(residArray));
 		
 		item.getNotes().put("frameBuffer", frameBufferHolder);
-		
-		SpotFinderJava finder = new SpotFinderJava();
-		finder.process(item);
-		
-		manager = new CLResourceManager();
-		//cl = CLSystemGJ.getDefault();;
-		queue = cl.pollQueue();
-
-		candidates = item.getNotes().gett(
-				"candidates");
-		frameBuffer = manager.watch(item.getNotes()
-				.<BufferHolder<ShortBuffer>> gett("frameBuffer")
-				.getCLBuffer(cl));
-
-		spotCount = item.getSpots().getSpotCount();
-
-		// TEMP FIX, why required? For Buffer creation?!
-		if (spotCount == 0) {
-			spotCount = 1;
-		}
-
-		//int valuesPerDimension = 2;
-		final int spotBufferSize2 = spotCount * getConfig().getInt("fitDimension")
-				* valuesPerDimension;
-
-		spots = manager.watch(Utils
-				.tryAllocation(new Callable<CLBuffer<FloatBuffer>>() {
-
-					@Override
-					public CLBuffer<FloatBuffer> call() throws Exception {
-						return cl.getContext()
-								.createFloatBuffer(spotBufferSize2, READ_WRITE);
-					}
-
-				}));
-
-		//CLKernel fitKernel2 = null;// clPipe.getProgram("GraspJ_peak_fitting.cl").createCLKernel("graspj");
-
-		fitKernel = manager.watch(cl.getProgramManager().getProgram(clProgramFitter)
-				.createCLKernel("fit_spots"));
-
-		fitKernel
-				.putArg(item.getAcquisitionConfig().getFloat("pixelSize"))
-				.putArg(getConfig().getFloat("sigmaPSF"))
-				.putArg(item.getAcquisitionConfig().getFloat("countConversion"))
-                .putArg(item.getAcquisitionConfig().getInt("countOffset"))
-				.putArg(getConfig().getInt("fitDimension"))
-				.putArg(getConfig().getInt("iterations"))
-				.putArg(getConfig().getInt("boxRadius"))
-				.putArg(item.getAcquisitionConfig().getDimensions().frameWidth)
-				.putArg(item.getAcquisitionConfig().getDimensions().frameHeight)
-				.putArg(frameBuffer)
-				.putArg(manager.watch(candidates.getCLBuffer(cl)))
-				.putArg(spots);
-
-		//int spotsPerExecStep = 16000;
-		//int localWorkSize = 64;
-		//int spotOffset = 0;
-
-		StopWatch stopWatch2 = new StopWatch();
-
-		CLTools.steppedKernelEnqueue(queue, fitKernel, spotCount, spotOffset,
-				spotsPerExecStep, localWorkSize);
-
-		stopWatch.stop();
-
-		double execTime2 = Math.max(1, stopWatch2.getElapsedTime());
-		double speed2 = (spotCount * 1000) / execTime2;
-		//DecimalFormat df = new DecimalFormat("#");
-
-		logger.info("Package {} completed fitting with {} spots/s", packageNr,
-				df.format(speed2));
-
-		queue.putReadBuffer(spots, true);
-
-		item.getSpots().getSpots().setCLBuffer(spots);
-
-		spotCount = item.getSpots().getSpotCount();
-		logger.info("Spots fitted: {}", spotCount);
-		
-		System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
-		
-		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
-		// remove candidates from notes, because it is no longer valid
-		item.getNotes().remove("candidates");
-		item.getNotes().remove("frameBuffer");
-
-		// TODO don't call gc to often!
-		// System.gc();
-		
-		manager.releaseAll();
-		cl.returnQueue(queue);
-		packageNr++;
 		return;
 	}
 
-	@Override
-	public FitConfig getConfig() {
-		return config;
-	}
-
-	@Override
-	public void setConfig(EnhancedConfig config) {
-		this.config = (FitConfig) config; // TODO wrap instead
-	}
-	
-	
 	private float[][] Buff2Mat(FloatBuffer buffer, int jj){
 		int ii = buffer.capacity()/jj;
 		float[][] matrix = new float[ii][jj];
@@ -334,22 +123,11 @@ public class DAOStorm extends AbstractAIProcessor {
 	
 	
 	private short[][] calcResidual(short[][] imageArr, float[][] spotsArr, float pixel_size, float offset_x, float offset_y){
-		//Matrix subsMat = new Matrix(imageArr.length, imageArr[0].length);
-		//short[][] gaussMat = new short[imageArr.length][imageArr[0].length];
-		/*double[][] imageDouble = new double[imageArr.length][imageArr[0].length];
-		for(int i = 0; i < imageArr.length; i++)
-	    {
-	        for(int j = 0; j < imageArr[0].length; j++) {
-	        	Short value = new Short(imageArr[i][j]);
-	        	imageDouble[i][j] = value.doubleValue();
-	        }
-	    }
-		
-		Matrix imageMat = new Matrix(imageDouble);*/
+
 		short[][] subsArray = new short[imageArr.length][imageArr[0].length];
 		for (int i = 0; i < spotsArr.length; i++){
 			short[][] newGaussMat = calcGaussian(spotsArr[i], imageArr.length, imageArr[0].length, pixel_size, offset_x, offset_y);
-			//System.out.println(imageArr.length + "; " + imageArr[0].length + "; ");
+			
 			for(int ii = 0; ii < imageArr.length; ii++) {
 		        for(int jj = 0; jj < imageArr[0].length; jj++) {
 		        	// The substraction must be negative, so int appears... 
@@ -447,6 +225,18 @@ public class DAOStorm extends AbstractAIProcessor {
 	private double f_i_ti_m12 (float i, float ti)
 	{
 		return i-ti-0.5d;
+	}
+
+	@Override
+	public EnhancedConfig getConfig() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setConfig(EnhancedConfig config) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
