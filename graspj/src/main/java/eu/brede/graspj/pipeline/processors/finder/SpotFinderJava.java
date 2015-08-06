@@ -93,7 +93,7 @@ public class SpotFinderJava extends AbstractAIProcessor {
 		candidates.limit(candidates.capacity());
 		
 		
-		CLSystem cl = CLSystemGJ.getDefault();;
+		CLSystem cl = CLSystemGJ.getDefault();
 		// No CLResourceManager needed as all CLBuffers need to stay alive for fitting
 //		CLResourceManager manager = new CLResourceManager();
 		
