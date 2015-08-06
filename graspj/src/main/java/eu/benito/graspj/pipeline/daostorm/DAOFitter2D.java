@@ -31,6 +31,7 @@ import eu.brede.graspj.datatypes.AnalysisItem;
 import eu.brede.graspj.datatypes.bufferholder.BufferHolder;
 import eu.brede.graspj.opencl.utils.CLSystemGJ;
 import eu.brede.graspj.pipeline.processors.AbstractAIProcessor;
+import eu.brede.graspj.pipeline.processors.finder.SpotFinderJava;
 import eu.brede.graspj.utils.Buffers;
 import eu.brede.graspj.utils.Utils;
 
@@ -177,14 +178,106 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
 		// item.getAcquisition().getFrameBuffer().free();
 		candidates.free();
+		/*
+		 * Trying first DAOSTORM iteration.
+		 * 
+		 */
+		//item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").append(residBuff);
+		
+		//frameBufferHolder.free();
+		frameBufferHolder.setBuffer(Mat2Buff(residArray));
+		
+		item.getNotes().put("frameBuffer", frameBufferHolder);
+		
+		SpotFinderJava finder = new SpotFinderJava();
+		finder.process(item);
+		
+		CLResourceManager manager2 = new CLResourceManager();
+		//cl = CLSystemGJ.getDefault();;
+		queue = cl.pollQueue();
 
+		candidates = item.getNotes().gett(
+				"candidates");
+		frameBuffer = manager2.watch(item.getNotes()
+				.<BufferHolder<ShortBuffer>> gett("frameBuffer")
+				.getCLBuffer(cl));
+
+		spotCount = item.getSpots().getSpotCount();
+
+		// TEMP FIX, why required? For Buffer creation?!
+		if (spotCount == 0) {
+			spotCount = 1;
+		}
+
+		//int valuesPerDimension = 2;
+		final int spotBufferSize2 = spotCount * getConfig().getInt("fitDimension")
+				* valuesPerDimension;
+
+		CLBuffer<FloatBuffer> spots2 = manager.watch(Utils
+				.tryAllocation(new Callable<CLBuffer<FloatBuffer>>() {
+
+					@Override
+					public CLBuffer<FloatBuffer> call() throws Exception {
+						return cl.getContext()
+								.createFloatBuffer(spotBufferSize2, READ_WRITE);
+					}
+
+				}));
+
+		CLKernel fitKernel2 = null;// clPipe.getProgram("GraspJ_peak_fitting.cl").createCLKernel("graspj");
+
+		fitKernel2 = manager.watch(cl.getProgramManager().getProgram(clProgramFitter)
+				.createCLKernel("fit_spots"));
+
+		fitKernel2
+				.putArg(item.getAcquisitionConfig().getFloat("pixelSize"))
+				.putArg(getConfig().getFloat("sigmaPSF"))
+				.putArg(item.getAcquisitionConfig().getFloat("countConversion"))
+                .putArg(item.getAcquisitionConfig().getInt("countOffset"))
+				.putArg(getConfig().getInt("fitDimension"))
+				.putArg(getConfig().getInt("iterations"))
+				.putArg(getConfig().getInt("boxRadius"))
+				.putArg(item.getAcquisitionConfig().getDimensions().frameWidth)
+				.putArg(item.getAcquisitionConfig().getDimensions().frameHeight)
+				.putArg(frameBuffer)
+				.putArg(manager.watch(candidates.getCLBuffer(cl)))
+				.putArg(spots2);
+
+		//int spotsPerExecStep = 16000;
+		//int localWorkSize = 64;
+		//int spotOffset = 0;
+
+		StopWatch stopWatch2 = new StopWatch();
+
+		CLTools.steppedKernelEnqueue(queue, fitKernel2, spotCount, spotOffset,
+				spotsPerExecStep, localWorkSize);
+
+		stopWatch.stop();
+
+		double execTime2 = Math.max(1, stopWatch2.getElapsedTime());
+		double speed2 = (spotCount * 1000) / execTime2;
+		//DecimalFormat df = new DecimalFormat("#");
+
+		logger.info("Package {} completed fitting with {} spots/s", packageNr,
+				df.format(speed2));
+
+		queue.putReadBuffer(spots2, true);
+
+		item.getSpots().getSpots().setCLBuffer(spots2);
+
+		spotCount = item.getSpots().getSpotCount();
+		logger.info("Spots fitted: {}", spotCount);
+		
+		System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
+		
+		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
 		// remove candidates from notes, because it is no longer valid
 		item.getNotes().remove("candidates");
 		item.getNotes().remove("frameBuffer");
 
 		// TODO don't call gc to often!
 		// System.gc();
-
+		
 		manager.releaseAll();
 		cl.returnQueue(queue);
 		packageNr++;
@@ -256,10 +349,11 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		short[][] subsArray = new short[imageArr.length][imageArr[0].length];
 		for (int i = 0; i < spotsArr.length; i++){
 			short[][] newGaussMat = calcGaussian(spotsArr[i], imageArr.length, imageArr[0].length, pixel_size, offset_x, offset_y);
+			//System.out.println(imageArr.length + "; " + imageArr[0].length + "; ");
 			for(int ii = 0; ii < imageArr.length; ii++) {
 		        for(int jj = 0; jj < imageArr[0].length; jj++) {
 		        	// The substraction must be negative, so int appears... 
-		        	subsArray[ii][jj] = (short) (imageArr[ii][jj] - newGaussMat[i][jj]);
+		        	subsArray[ii][jj] = (short) (imageArr[ii][jj] - newGaussMat[ii][jj]);
 		        }
 		    }
 		}
