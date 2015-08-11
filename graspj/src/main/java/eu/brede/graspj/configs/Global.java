@@ -56,6 +56,8 @@ import eu.brede.graspj.pipeline.producers.SplitExistingProducer;
 import eu.brede.graspj.utils.ReportingExecutorServiceGJ;
 import eu.brede.graspj.utils.Utils;
 import eu.benito.graspj.pipeline.daostorm.DAOFitter2D;
+import eu.benito.graspj.pipeline.daostorm.DAOStorm;
+import eu.benito.graspj.pipeline.daostorm.SpotFinderDAO;
 
 public enum Global {
 	INSTANCE;
@@ -189,6 +191,9 @@ public enum Global {
 		classList.add(WorkflowOnCopy.class);
 		classList.add(ContinousWorkflowOnCopy.class);
 		classList.add(DAOFitter2D.class);
+		classList.add(DAOStorm.class);
+		classList.add(SpotFinderDAO.class);
+		
 		return classList;
 	}
 	

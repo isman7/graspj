@@ -12,6 +12,8 @@ import org.ciscavate.cjwizard.WizardSettings;
 import org.ciscavate.cjwizard.pagetemplates.PageTemplate;
 
 import eu.benito.graspj.pipeline.daostorm.DAOFitter2D;
+import eu.benito.graspj.pipeline.daostorm.DAOStorm;
+import eu.benito.graspj.pipeline.daostorm.SpotFinderDAO;
 import eu.brede.common.config.EnhancedConfig;
 import eu.brede.common.gui.wizard.CustomPageTemplate;
 import eu.brede.common.gui.wizard.LinearPageFactory;
@@ -193,22 +195,6 @@ public class WorkflowWizardView extends View {
 		
 		EnhancedConfig optionalFeatures = (EnhancedConfig) settings
 				.get("optionalFeatures");
-		/*Option daoStorm = optionalFeatures.gett("daoStorm");
-		
-		if (daoStorm.isSelected()) {
-			DaoStorm finder = new DaoStorm();
-			System.out.println("DAOSTORM Choosen");
-			finder.setConfig((FindConfig) settings.get("findConfig"));
-			processors.add(finder);
-		}else{
-			SpotFinderJava finder = new SpotFinderJava();
-			finder.setConfig((FindConfig) settings.get("findConfig"));
-			processors.add(finder);
-		}*/
-		
-		SpotFinderJava finder = new SpotFinderJava();
-		finder.setConfig((FindConfig) settings.get("findConfig"));
-		processors.add(finder);
 		
 		Class<? extends SpotRenderer> rendererClass = null;
 
@@ -218,18 +204,44 @@ public class WorkflowWizardView extends View {
 		
 		switch (dimensionality.getChosen()) {
 		case "2D DAOSTORM":
+			
+			// Finder object declaration: 
+			SpotFinderDAO finderDAO = new SpotFinderDAO();
+			// Finder configuration is assigned:
+			finderDAO.setConfig((FindConfig) settings.get("findConfig"));
+			
+			// Fitter object declaration: 
 			DAOFitter2D fitterDAO = new DAOFitter2D();
+			// Fitter configuration is assigned: 
 			fitterDAO.setConfig((FitConfig) settings.get("fitConfig"));
-			processors.add(fitterDAO);
+			
+			// DAO Substract and mixer object declaration:
+			DAOStorm daostorm = new DAOStorm();
+			//daostorm.setConfig((DAOConfig) settings.get("DAOConfig"));
+			
+			for (int daoIter = 0; daoIter < 2; daoIter++){
+				processors.add(finderDAO);
+				processors.add(fitterDAO);
+				processors.add(daostorm);
+			}
+			
 			rendererClass = Gaussian2D.class;
 			break;
 		case "2D":
+			SpotFinderJava finder = new SpotFinderJava();
+			finder.setConfig((FindConfig) settings.get("findConfig"));
+			processors.add(finder);
+			
 			MLEFitter2D fitter = new MLEFitter2D();
 			fitter.setConfig((FitConfig) settings.get("fitConfig"));
 			processors.add(fitter);
 			rendererClass = Gaussian2D.class;
 			break;
 		case "3Dastigmatism":
+			SpotFinderJava finder3D = new SpotFinderJava();
+			finder3D.setConfig((FindConfig) settings.get("findConfig"));
+			processors.add(finder3D);
+			
 			MLEFitter3D fitter3D = new MLEFitter3D();
 			fitter3D.setConfig((MLE3DConfig) settings.get("fitConfig"));
 			processors.add(fitter3D);
