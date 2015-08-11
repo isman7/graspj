@@ -51,9 +51,9 @@ public class MLEFitter2D extends AbstractAIProcessor {
 
 		BufferHolder<ShortBuffer> candidates = item.getNotes().gett(
 				"candidates");
-		CLBuffer<ShortBuffer> frameBuffer = manager.watch(item.getNotes()
-				.<BufferHolder<ShortBuffer>> gett("frameBuffer")
-				.getCLBuffer(cl));
+		BufferHolder<ShortBuffer> frameBufferHolder = item.getNotes()
+		.<BufferHolder<ShortBuffer>> gett("frameBuffer");
+		CLBuffer<ShortBuffer> frameBuffer = manager.watch(frameBufferHolder.getCLBuffer(cl));
 
 		int spotCount = item.getSpots().getSpotCount();
 
@@ -121,7 +121,7 @@ public class MLEFitter2D extends AbstractAIProcessor {
 		spotCount = item.getSpots().getSpotCount();
 		logger.info("Spots fitted: {}", spotCount);
 		
-		System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
+		//System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
 		
 		item.getSpots().rewindAllBuffers();
 
