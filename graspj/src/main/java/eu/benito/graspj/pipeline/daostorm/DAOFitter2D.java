@@ -29,6 +29,7 @@ import eu.brede.graspj.configs.acquisition.AcquisitionConfig;
 import eu.brede.graspj.configs.fit.FitConfig;
 import eu.brede.graspj.datatypes.AnalysisItem;
 import eu.brede.graspj.datatypes.bufferholder.BufferHolder;
+import eu.brede.graspj.datatypes.spotcollection.BufferSpotCollection;
 import eu.brede.graspj.opencl.utils.CLSystemGJ;
 import eu.brede.graspj.pipeline.processors.AbstractAIProcessor;
 import eu.brede.graspj.pipeline.processors.finder.SpotFinderJava;
@@ -45,6 +46,7 @@ public class DAOFitter2D extends AbstractAIProcessor {
 
 	private FitConfig config;
 	private int packageNr = 0;
+	private int stepDAO = 0;
 	protected String clProgramFitter = "CLProgramMLE2DFitter";
 
 	public DAOFitter2D() {
@@ -59,9 +61,9 @@ public class DAOFitter2D extends AbstractAIProcessor {
 
 		BufferHolder<ShortBuffer> candidates = item.getNotes().gett(
 				"candidates");
-		CLBuffer<ShortBuffer> frameBuffer = manager.watch(item.getNotes()
-				.<BufferHolder<ShortBuffer>> gett("frameBuffer")
-				.getCLBuffer(cl));
+		BufferHolder<ShortBuffer> frameBufferHolder = item.getNotes()
+		.<BufferHolder<ShortBuffer>> gett("frameBuffer");
+		CLBuffer<ShortBuffer> frameBuffer = manager.watch(frameBufferHolder.getCLBuffer(cl));
 
 		int spotCount = item.getSpots().getSpotCount();
 
@@ -130,157 +132,32 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		logger.info("Spots fitted: {}", spotCount);
 		
 		System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
-		//System.out.println(item.getSpots().getSpots().getBuffer().get());
-		//Trying to print all the data in the buffer
 		
-		//FloatBuffer bufferSpots = item.getSpots().getSpots().getBuffer();
-		/*int ii = 0;
-		while (bufferSpots.hasRemaining() && (ii<20)){
-			System.out.println(bufferSpots.get());
-			ii++;
-		}*/
+		item.getSpots().rewindAllBuffers();
 		
-		/* Buffer order:
-		 * 
-		 * x, y, z, I, B, sx, sy, sz, sI, sB
-		 * 
-		 * and frameNr is packageNr in this case. 
-		 * 
-		 * CSV order: 
-		 * 
-		 * x, sx, y, sy, z, sz, I, sI, B, sB, frameNr
-		 * 
-		 */
-		
-		BufferHolder<ShortBuffer> frameBufferHolder = item.getNotes().gett("frameBuffer");
-		ShortBuffer imageBuffer = frameBufferHolder.getBuffer();
-		//System.out.println(imageBuffer.capacity());
-		short[][] imageArray = Buff2Mat(imageBuffer, 
-										item.getAcquisitionConfig().getDimensions().frameWidth
-										);
-		
-		float[][] spotsArray = Buff2Mat(item.getSpots().getSpots().getBuffer(), 10);
-		
-		/*float pixel_size = item.getConfig().getFloat("pixelSize"); 
-		float offset_x   = item.getConfig().getFloat("offsetX"); 
-		float offset_y   = item.getConfig().getFloat("offsetY"); */
-
-
-		short[][] residArray = calcResidual(imageArray, 
-											spotsArray, 
-											item.getAcquisitionConfig().getFloat("pixelSize"), 
-											0, 0);
-		
-		ShortBuffer residBuff = Mat2Buff(residArray);
-		
-		
-		// try to free direct and CL memory
-		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
-		// item.getAcquisition().getFrameBuffer().free();
-		candidates.free();
-		/*
-		 * Trying first DAOSTORM iteration.
-		 * 
-		 */
-		//item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").append(residBuff);
-		
-		//frameBufferHolder.free();
-		frameBufferHolder.setBuffer(Mat2Buff(residArray));
-		
-		item.getNotes().put("frameBuffer", frameBufferHolder);
-		
-		SpotFinderJava finder = new SpotFinderJava();
-		finder.process(item);
-		
-		manager = new CLResourceManager();
-		//cl = CLSystemGJ.getDefault();;
-		queue = cl.pollQueue();
-
-		candidates = item.getNotes().gett(
-				"candidates");
-		frameBuffer = manager.watch(item.getNotes()
-				.<BufferHolder<ShortBuffer>> gett("frameBuffer")
-				.getCLBuffer(cl));
-
-		spotCount = item.getSpots().getSpotCount();
-
-		// TEMP FIX, why required? For Buffer creation?!
-		if (spotCount == 0) {
-			spotCount = 1;
-		}
-
-		//int valuesPerDimension = 2;
-		final int spotBufferSize2 = spotCount * getConfig().getInt("fitDimension")
-				* valuesPerDimension;
-
-		spots = manager.watch(Utils
-				.tryAllocation(new Callable<CLBuffer<FloatBuffer>>() {
-
-					@Override
-					public CLBuffer<FloatBuffer> call() throws Exception {
-						return cl.getContext()
-								.createFloatBuffer(spotBufferSize2, READ_WRITE);
-					}
-
-				}));
-
-		//CLKernel fitKernel2 = null;// clPipe.getProgram("GraspJ_peak_fitting.cl").createCLKernel("graspj");
-
-		fitKernel = manager.watch(cl.getProgramManager().getProgram(clProgramFitter)
-				.createCLKernel("fit_spots"));
-
-		fitKernel
-				.putArg(item.getAcquisitionConfig().getFloat("pixelSize"))
-				.putArg(getConfig().getFloat("sigmaPSF"))
-				.putArg(item.getAcquisitionConfig().getFloat("countConversion"))
-                .putArg(item.getAcquisitionConfig().getInt("countOffset"))
-				.putArg(getConfig().getInt("fitDimension"))
-				.putArg(getConfig().getInt("iterations"))
-				.putArg(getConfig().getInt("boxRadius"))
-				.putArg(item.getAcquisitionConfig().getDimensions().frameWidth)
-				.putArg(item.getAcquisitionConfig().getDimensions().frameHeight)
-				.putArg(frameBuffer)
-				.putArg(manager.watch(candidates.getCLBuffer(cl)))
-				.putArg(spots);
-
-		//int spotsPerExecStep = 16000;
-		//int localWorkSize = 64;
-		//int spotOffset = 0;
-
-		StopWatch stopWatch2 = new StopWatch();
-
-		CLTools.steppedKernelEnqueue(queue, fitKernel, spotCount, spotOffset,
-				spotsPerExecStep, localWorkSize);
-
-		stopWatch.stop();
-
-		double execTime2 = Math.max(1, stopWatch2.getElapsedTime());
-		double speed2 = (spotCount * 1000) / execTime2;
-		//DecimalFormat df = new DecimalFormat("#");
-
-		logger.info("Package {} completed fitting with {} spots/s", packageNr,
-				df.format(speed2));
-
-		queue.putReadBuffer(spots, true);
-
-		item.getSpots().getSpots().setCLBuffer(spots);
-
-		spotCount = item.getSpots().getSpotCount();
-		logger.info("Spots fitted: {}", spotCount);
-		
-		System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
-		
-		item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
-		// remove candidates from notes, because it is no longer valid
-		item.getNotes().remove("candidates");
-		item.getNotes().remove("frameBuffer");
-
-		// TODO don't call gc to often!
-		// System.gc();
+		if (stepDAO < (2-1)){
+			stepDAO++;
+		}else if (stepDAO == (2-1)){
+			// try to free direct and CL memory
+			item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
+			// item.getAcquisition().getFrameBuffer().free();
+			candidates.free();
+	
+			// remove candidates from notes, because it is no longer valid
+			item.getNotes().remove("candidates");
+			item.getNotes().remove("frameBuffer");
+	
+			// TODO don't call gc to often!
+			// System.gc();
+			stepDAO = 0;
+			packageNr++;
+		} 
 		
 		manager.releaseAll();
 		cl.returnQueue(queue);
-		packageNr++;
+		
+		
+		
 		return;
 	}
 

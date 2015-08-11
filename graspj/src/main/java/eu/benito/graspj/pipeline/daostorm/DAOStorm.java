@@ -21,14 +21,17 @@ import com.jogamp.opencl.CLBuffer;
 import com.jogamp.opencl.CLCommandQueue;
 import com.jogamp.opencl.CLKernel;
 
+import eu.benito.graspj.configs.daostorm.DAOConfig;
 import eu.brede.common.config.EnhancedConfig;
 import eu.brede.common.opencl.utils.CLResourceManager;
 import eu.brede.common.opencl.utils.CLSystem;
 import eu.brede.common.opencl.utils.CLTools;
 import eu.brede.graspj.configs.acquisition.AcquisitionConfig;
+import eu.brede.graspj.configs.finding.FindConfig;
 import eu.brede.graspj.configs.fit.FitConfig;
 import eu.brede.graspj.datatypes.AnalysisItem;
 import eu.brede.graspj.datatypes.bufferholder.BufferHolder;
+import eu.brede.graspj.datatypes.spotcollection.BufferSpotCollection;
 import eu.brede.graspj.opencl.utils.CLSystemGJ;
 import eu.brede.graspj.pipeline.processors.AbstractAIProcessor;
 import eu.brede.graspj.pipeline.processors.finder.SpotFinderJava;
@@ -43,44 +46,80 @@ public class DAOStorm extends AbstractAIProcessor {
 
 	final static Logger logger = LoggerFactory.getLogger(DAOStorm.class);
 
+	private DAOConfig config;
+	private int stepDAO = 0;
+	public DAOStorm() {
+		config = new DAOConfig();
+	}
+	
+	//private SpotFinderDAO finder = new SpotFinderDAO();
+	
 	@Override
 	public void process(AnalysisItem item) {
-		/* Buffer order:
-		 * 
-		 * x, y, z, I, B, sx, sy, sz, sI, sB
-		 * 
-		 * and frameNr is packageNr in this case. 
-		 * 
-		 * CSV order: 
-		 * 
-		 * x, sx, y, sy, z, sz, I, sI, B, sB, frameNr
-		 * 
-		 */
 		
-		BufferHolder<ShortBuffer> frameBufferHolder = item.getNotes().gett("frameBuffer");
-		ShortBuffer imageBuffer = frameBufferHolder.getBuffer();
-		//System.out.println(imageBuffer.capacity());
-		short[][] imageArray = Buff2Mat(imageBuffer, 
-										item.getAcquisitionConfig().getDimensions().frameWidth
-										);
-		
-		float[][] spotsArray = Buff2Mat(item.getSpots().getSpots().getBuffer(), 10);
-		
-		/*float pixel_size = item.getConfig().getFloat("pixelSize"); 
-		float offset_x   = item.getConfig().getFloat("offsetX"); 
-		float offset_y   = item.getConfig().getFloat("offsetY"); */
+		if (stepDAO < (2-1)) {
+			/* Buffer order:
+			 * 
+			 * x, y, z, I, B, sx, sy, sz, sI, sB
+			 * 
+			 * and frameNr is packageNr in this case. 
+			 * 
+			 * CSV order: 
+			 * 
+			 * x, sx, y, sy, z, sz, I, sI, B, sB, frameNr
+			 * 
+			 */
+			/*CLResourceManager manager = new CLResourceManager();
+			final CLSystem cl = CLSystemGJ.getDefault();;
+			CLCommandQueue queue = cl.pollQueue();
+
+			BufferHolder<ShortBuffer> candidates = item.getNotes().gett(
+					"candidates");*/
+			
+			BufferHolder<ShortBuffer> frameBufferHolder = item.getNotes()
+					.<BufferHolder<ShortBuffer>> gett("frameBuffer");
+			ShortBuffer imageBuffer = frameBufferHolder.getBuffer();
+			//System.out.println(imageBuffer.capacity());
+			short[][] imageArray = Buff2Mat(imageBuffer, 
+											item.getAcquisitionConfig().getDimensions().frameWidth
+											);
+			
+			float[][] spotsArray = Buff2Mat(item.getSpots().getSpots().getBuffer(), 10);
+			
+			/*float pixel_size = item.getConfig().getFloat("pixelSize"); 
+			float offset_x   = item.getConfig().getFloat("offsetX"); 
+			float offset_y   = item.getConfig().getFloat("offsetY"); */
 
 
-		short[][] residArray = calcResidual(imageArray, 
-											spotsArray, 
-											item.getAcquisitionConfig().getFloat("pixelSize"), 
-											0, 0);
+			short[][] residArray = calcResidual(imageArray, 
+												spotsArray, 
+												item.getAcquisitionConfig().getFloat("pixelSize"), 
+												0, 0);
+			
+			//ShortBuffer residBuff = Mat2Buff(residArray);
+			
+			frameBufferHolder.setBuffer(Mat2Buff(residArray));
+			
+			item.getNotes().put("frameBuffer", frameBufferHolder);
+			
+			
+			//item.getNotes().put("candidates", this.candidates);
+			//item.getSpots().appendSpotCollection(oldSpots);
+			String DAOSpotsKey = "spotsDAO" + stepDAO;
+			item.getNotes().put(DAOSpotsKey, new BufferSpotCollection(item.getSpots()));
+			
+			stepDAO++;
+			
+		} else if (stepDAO == (2-1)) {
+			
+			for (int j = 0; j < stepDAO; j++){
+				String key = "spotsDAO" + j;  
+				item.getSpots().appendSpotCollection((BufferSpotCollection) item.getNotes().get(key));
+			}
+			stepDAO = 0;
 		
-		ShortBuffer residBuff = Mat2Buff(residArray);
+		}
 		
-		frameBufferHolder.setBuffer(Mat2Buff(residArray));
-		
-		item.getNotes().put("frameBuffer", frameBufferHolder);
 		return;
 	}
 
@@ -228,15 +267,13 @@ public class DAOStorm extends AbstractAIProcessor {
 	}
 
 	@Override
-	public EnhancedConfig getConfig() {
-		// TODO Auto-generated method stub
-		return null;
+	public DAOConfig getConfig() {
+		return config;
 	}
 
 	@Override
 	public void setConfig(EnhancedConfig config) {
-		// TODO Auto-generated method stub
-		
+		this.config = (DAOConfig) config;
 	}
 
 	
