@@ -11,6 +11,8 @@ import org.ciscavate.cjwizard.WizardPage;
 import org.ciscavate.cjwizard.WizardSettings;
 import org.ciscavate.cjwizard.pagetemplates.PageTemplate;
 
+import eu.benito.graspj.configs.daostorm.DAOConfigOptional;
+import eu.benito.graspj.configs.daostorm.DAOConfig;
 import eu.benito.graspj.pipeline.daostorm.DAOFitter2D;
 import eu.benito.graspj.pipeline.daostorm.DAOStorm;
 import eu.benito.graspj.pipeline.daostorm.SpotFinderDAO;
@@ -201,6 +203,7 @@ public class WorkflowWizardView extends View {
 		ObjectChoice<String> dimensionality = displayConfig
 				.gett("dimensionality");
 		
+		DAOConfigOptional daoConfigOpt = (DAOConfigOptional) settings.get("daoConfigOpt");
 		
 		switch (dimensionality.getChosen()) {
 		case "2D DAOSTORM":
@@ -208,18 +211,24 @@ public class WorkflowWizardView extends View {
 			// Finder object declaration: 
 			SpotFinderDAO finderDAO = new SpotFinderDAO();
 			// Finder configuration is assigned:
-			finderDAO.setConfig((FindConfig) settings.get("findConfig"));
+			FindConfig findConfigDAO = (FindConfig) settings.get("findConfig");
+			findConfigDAO.put("daoConfigOpt", daoConfigOpt);
+			finderDAO.setConfig(findConfigDAO);
 			
 			// Fitter object declaration: 
 			DAOFitter2D fitterDAO = new DAOFitter2D();
 			// Fitter configuration is assigned: 
-			fitterDAO.setConfig((FitConfig) settings.get("fitConfig"));
+			FitConfig fitConfigDAO = (FitConfig) settings.get("fitConfig");
+			fitConfigDAO.put("daoConfigOpt", daoConfigOpt);
+			fitterDAO.setConfig(fitConfigDAO);
 			
 			// DAO Substract and mixer object declaration:
 			DAOStorm daostorm = new DAOStorm();
-			//daostorm.setConfig((DAOConfig) settings.get("DAOConfig"));
+			DAOConfig daoConfig = (DAOConfig) settings.get("daoConfig");
+			daostorm.setConfig(daoConfig);
 			
-			for (int daoIter = 0; daoIter < 2; daoIter++){
+			for (int daoIter = 0; daoIter < daoConfigOpt.getInt("iterations"); daoIter++){
+				 
 				processors.add(finderDAO);
 				processors.add(fitterDAO);
 				processors.add(daostorm);

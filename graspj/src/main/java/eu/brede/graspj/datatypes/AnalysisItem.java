@@ -301,11 +301,6 @@ public class AnalysisItem implements Serializable, Configurable {
 	}
 
 	public Point3f calcAverageLocalizationPrecision() {
-		try {
-		    Thread.sleep(1000);                 //1000 milliseconds is one second.
-		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
-		}
 		int spotNr = 0;
 		int positives = 0;
 		Double x = 0d;
@@ -378,8 +373,13 @@ public class AnalysisItem implements Serializable, Configurable {
 		
 		result.put("spotCount", getSpots().getSpotCount());
 		result.put("positiveMaskCount", getMask().countPositives());
+		/*try {
+		    Thread.sleep(1000);                 //1000 milliseconds.
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 		result.put("avgLocalizationPrecision", calcAverageLocalizationPrecision());
-		
+		*/
 		int numFrames = getSpots().getFrameCount();
 //		float[] drift = new float[numFrames];
 		float[] frameNrs = new float[numFrames];

@@ -21,6 +21,7 @@ import com.jogamp.opencl.CLBuffer;
 import com.jogamp.opencl.CLCommandQueue;
 import com.jogamp.opencl.CLKernel;
 
+import eu.benito.graspj.configs.daostorm.DAOConfigOptional;
 import eu.brede.common.config.EnhancedConfig;
 import eu.brede.common.opencl.utils.CLResourceManager;
 import eu.brede.common.opencl.utils.CLSystem;
@@ -59,6 +60,8 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		final CLSystem cl = CLSystemGJ.getDefault();;
 		CLCommandQueue queue = cl.pollQueue();
 
+		DAOConfigOptional daoConfigOpt = (DAOConfigOptional) getConfig().get("daoConfigOpt");
+		
 		BufferHolder<ShortBuffer> candidates = item.getNotes().gett(
 				"candidates");
 		BufferHolder<ShortBuffer> frameBufferHolder = item.getNotes()
@@ -131,13 +134,13 @@ public class DAOFitter2D extends AbstractAIProcessor {
 		spotCount = item.getSpots().getSpotCount();
 		logger.info("Spots fitted: {}", spotCount);
 		
-		System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
+		//System.out.println("Package " + packageNr +  " completed, fitted " + spotCount + " spots");		
 		
 		item.getSpots().rewindAllBuffers();
 		
-		if (stepDAO < (2-1)){
+		if (stepDAO < (daoConfigOpt.getInt("iterations")-1)){
 			stepDAO++;
-		}else if (stepDAO == (2-1)){
+		}else if (stepDAO == (daoConfigOpt.getInt("iterations")-1)){
 			// try to free direct and CL memory
 			item.getNotes().<BufferHolder<ShortBuffer>> gett("frameBuffer").free();
 			// item.getAcquisition().getFrameBuffer().free();

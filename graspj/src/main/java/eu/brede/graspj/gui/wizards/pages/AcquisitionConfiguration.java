@@ -9,6 +9,7 @@ import org.ciscavate.cjwizard.WizardPage;
 import org.ciscavate.cjwizard.WizardSettings;
 import org.jdesktop.swingx.VerticalLayout;
 
+import eu.benito.graspj.configs.daostorm.DAOConfig;
 import eu.brede.common.config.EnhancedConfig;
 import eu.brede.common.util.GUITools;
 import eu.brede.graspj.configs.acquisition.AcquisitionConfig;
@@ -31,6 +32,7 @@ public class AcquisitionConfiguration extends WizardPage {
 	private ConfigForm cfAcqConfig;
 	private ConfigForm cfFindConfig;
 	private ConfigForm cfFitConfig;
+	private ConfigForm cfDaoConfig;
 
 	public AcquisitionConfiguration() {
 		super("Acquisition and Finding Parameters", "Choose Acquisition and Finding Parameters");
@@ -46,9 +48,14 @@ public class AcquisitionConfiguration extends WizardPage {
 		cfFitConfig = new ConfigForm();
 		cfFitConfig.setName("fitConfig");
 		
+		cfDaoConfig = new ConfigForm();
+		cfDaoConfig.setName("daoConfig");
+		
+		
 		this.add(cfAcqConfig);
 		this.add(cfFindConfig);
 		this.add(cfFitConfig);
+		this.add(cfDaoConfig);
 	}
 
 	@Override
@@ -119,11 +126,16 @@ public class AcquisitionConfiguration extends WizardPage {
 		
 		switch (dimensionality.getChosen()) {
 		case "2D DAOSTORM":
+			cfDaoConfig.setConfig(new DAOConfig());
+			cfFitConfig.setConfig(new FitConfig());
+			break;
 		case "2D":
 			cfFitConfig.setConfig(new FitConfig());
+			this.remove(cfDaoConfig);
 			break;
 		case "3Dastigmatism":
 			cfFitConfig.setConfig(new MLE3DConfig());
+			this.remove(cfDaoConfig);
 			break;
 		}
 		

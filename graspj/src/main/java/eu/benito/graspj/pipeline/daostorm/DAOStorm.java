@@ -57,7 +57,7 @@ public class DAOStorm extends AbstractAIProcessor {
 	@Override
 	public void process(AnalysisItem item) {
 		
-		if (stepDAO < (2-1)) {
+		if (stepDAO < (getConfig().getInt("iterations")-1)) {
 			/* Buffer order:
 			 * 
 			 * x, y, z, I, B, sx, sy, sz, sI, sB
@@ -110,7 +110,7 @@ public class DAOStorm extends AbstractAIProcessor {
 			
 			stepDAO++;
 			
-		} else if (stepDAO == (2-1)) {
+		} else if (stepDAO == (getConfig().getInt("iterations")-1)) {
 			
 			for (int j = 0; j < stepDAO; j++){
 				String key = "spotsDAO" + j;  
@@ -200,13 +200,10 @@ public class DAOStorm extends AbstractAIProcessor {
 		if ((sx > 100) || (sy > 100)){
 			return calcGauss;
 		}
-
 		
 		float sx_px=(sx/pixel_size);
 		float sy_px=(sy/pixel_size);
 		int box_radius = (int) Math.ceil(3*Math.max(sx_px, sy_px));
-		float sx_sqrt2 =  sx_px * (float) Math.sqrt(2);
-		float sy_sqrt2 =  sy_px * (float) Math.sqrt(2);
 		
 		float center_x = ((x+offset_x)/pixel_size);
 		float center_y = ((y+offset_y)/pixel_size);
@@ -215,28 +212,17 @@ public class DAOStorm extends AbstractAIProcessor {
 		int end_x   = (int) Math.min(Math.ceil(center_x+box_radius),width-1);
 		int start_y = (int) Math.max(Math.floor(center_y-box_radius),0);
 		int end_y   = (int) Math.min(Math.ceil(center_y+box_radius),height-1);
-
-		
-		double x_tx_p12, x_tx_m12, y_ty_p12, y_ty_m12;
-		double dE_x, dE_y;
+	
+		double E_x, E_y;
 		
 		for (int i=start_y; i<end_y; i++){
 			for (int j=start_x; j< end_x; j++){
 				double gaussianValue = 0;
 				
-				/*x_tx_p12 = f_i_ti_p12(j,center_x);
-				x_tx_m12 = f_i_ti_m12(j,center_x);
+				E_x = f_exp(j, center_x ,sx);
+				E_y = f_exp(i, center_y ,sy);				
 				
-				y_ty_p12 = f_i_ti_p12(i,center_y);
-				y_ty_m12 = f_i_ti_m12(i,center_y);
-				
-				dE_x = f_dE_i(x_tx_p12,x_tx_m12,sx_sqrt2);
-				dE_y = f_dE_i(y_ty_p12,y_ty_m12,sy_sqrt2);*/
-				
-				dE_x = f_dE_i(j, center_x ,sx);
-				dE_y = f_dE_i(i, center_y ,sy);				
-				
-				gaussianValue = ((I/2)-B)*dE_y*dE_x; 
+				gaussianValue = ((I/2)-B)*E_y*E_x; 
 				calcGauss[i][j] = (short) gaussianValue;
 			}
 		}
@@ -245,27 +231,13 @@ public class DAOStorm extends AbstractAIProcessor {
 		
 		return calcGauss;
 	}
+
 	
-/*	private double f_dE_i(double i_ti_p12, double i_ti_m12, double s_sqrt2)
-	{ 
-		return 0.5d * (  Erf.erf(i_ti_p12/s_sqrt2) - Erf.erf(i_ti_m12/s_sqrt2));
-	}*/
-	
-	private double f_dE_i(double i, double ti, double s)
+	private double f_exp(double i, double ti, double s)
 	{ 
 		return Math.exp(-Math.pow((i-ti)/(2*s), 2));
 	}
 	
-	private double f_i_ti_p12 (float i, float ti)
-	{
-		return i-ti+0.5d;
-	}
-	
-	private double f_i_ti_m12 (float i, float ti)
-	{
-		return i-ti-0.5d;
-	}
-
 	@Override
 	public DAOConfig getConfig() {
 		return config;

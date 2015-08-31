@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import eu.brede.graspj.utils.Buffers;
 import com.jogamp.opencl.CLCommandQueue;
 
+import eu.benito.graspj.configs.daostorm.DAOConfigOptional;
 import eu.brede.common.config.EnhancedConfig;
 import eu.brede.common.opencl.utils.CLSystem;
 import eu.brede.common.util.DeepCopy;
@@ -59,7 +60,9 @@ public class SpotFinderDAO extends AbstractAIProcessor {
 	@Override
 	public void process(AnalysisItem item) {
 		super.process(item);
-
+		
+		DAOConfigOptional daoConfigOpt = (DAOConfigOptional) getConfig().get("daoConfigOpt");
+		
         int framesPerWorker = 32;
 
 		BufferHolder<ShortBuffer> frameBufferHolder = item.getNotes().gett("frameBuffer");
@@ -116,7 +119,7 @@ public class SpotFinderDAO extends AbstractAIProcessor {
 		frameBuffer.rewind();
 		
 		WorkerInfo info = new WorkerInfo();
-		info.threshold = getConfig().getInt("threshold")/(stepDAO+1);
+		info.threshold = daoConfigOpt.getInt("threshold"+stepDAO);
 		info.maxSpotsPerFrame = getConfig().getInt("maxSpotsPerFrame");
 		info.boxRadius = getConfig().getInt("boxRadius");
 		info.frameWidth = frameWidth;
@@ -223,7 +226,8 @@ public class SpotFinderDAO extends AbstractAIProcessor {
 		}*/
 		
 		item.getNotes().put("candidates", this.candidates);
-		if (stepDAO == (2-1)){
+		
+		if (stepDAO == (daoConfigOpt.getInt("iterations")-1)){
 			stepDAO = 0; 
 		} else {
 			stepDAO++;
